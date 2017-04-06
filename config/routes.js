@@ -18,6 +18,10 @@ module.exports = (app) => {
     app.post('/newsCreation/create', articleController.createPost);
 
     app.get('/news/newsBrowser', newsBrowser.loadNews);
-    app.get('/news/news/newsBrowser', newsBrowser.loadNews);
+
+    app.get('/newsCreation/details/:id', articleController.detailsGet);
+
+    app.get('/newsCreation/edit/:id', articleController.editGet);
+    app.post('/newsCreation/edit/:id', articleController.editPost);
 };
 

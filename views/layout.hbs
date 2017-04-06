@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SoftUni Blog</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
+
+    <script src="./javascripts/jquery-1.10.2.js"></script>
+    <script src="./../javascripts/bootstrap.js"></script>
+    <script src="./../javascripts/jquery.js"></script>
+    <script src="./../javascripts/bootstrap.min.js"></script>
+    <script src="./../javascripts/particles.min.js"></script>
+    <script src="./../javascripts/app.js"></script>
+    <script src="./../javascripts/jquery.parallax.js"></script>
+    <script src="./../javascripts/smoothscroll.js"></script>
+    <script src="./../javascripts/custom.js"></script>
+
+</head>
+<body>
+
+
+
+<header>
+
+
+    {{#if user}}
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+
+
+                    </button>
+                    <a href="/" class="navbar-brand">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/">About us</a></li>
+                        <li><a href="/">Products</a></li>
+                        <li><a href="/">Solutions</a></li>
+                        <li><a href="/news/newsBrowser">News</a></li>
+                        <li><a href="/user/logout">Logout</a></li>
+                        <li><a href="/newsCreation/create">Create News</a></li>
+                        <li><a href="/user/details">Welcome({{user.email}})</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    {{/if}}
+    {{#unless user}}
+        <div class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+                        <span class="icon icon-bar"></span>
+
+
+                    </button>
+                    <a href="/" class="navbar-brand">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/">About us</a></li>
+                        <li><a href="/">Products</a></li>
+                        <li><a href="/">Solutions</a></li>
+                        <li><a href="/news/newsBrowser">News</a></li>
+                        <li><a href="/user/login">Login</a></li>
+                        <li><a href="/user/register">Register</a></li>
+                        <li><a href="/">Contacts</a></li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    {{/unless}}
+    </div>
+    </div>
+</header>
+{{#if error }}
+    <h2>{{error}}</h2>
+{{/if}}
+{{{body}}}
+</body>
+<footer>
+    <div class="container modal-footer">
+        <p>&copy; 2016 - Software University Foundation</p>
+    </div>
+</footer>
+</html>

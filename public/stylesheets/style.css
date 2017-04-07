@@ -18,6 +18,14 @@ body {
 /*---------------------------------------
     Typorgraphy              
 -----------------------------------------*/
+#myContact{
+  text-align: center;
+}
+
+#msgBox{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Merriweather', serif;

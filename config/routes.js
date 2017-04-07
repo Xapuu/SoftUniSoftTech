@@ -2,6 +2,7 @@ const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
 const articleController = require('./../controllers/article');
 const newsBrowser = require('./../controllers/newsBrowser');
+const contactController = require('./../controllers/contacts');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -23,5 +24,9 @@ module.exports = (app) => {
 
     app.get('/newsCreation/edit/:id', articleController.editGet);
     app.post('/newsCreation/edit/:id', articleController.editPost);
+
+    app.get('/contacts/contacts', contactController.formGet);
+    app.post('/contacts/contacts', contactController.formPost);
+
 };
 

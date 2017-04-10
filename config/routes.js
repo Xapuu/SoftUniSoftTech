@@ -3,6 +3,7 @@ const homeController = require('./../controllers/home');
 const articleController = require('./../controllers/article');
 const newsBrowser = require('./../controllers/newsBrowser');
 const contactController = require('./../controllers/contacts');
+const userFunctionalityController = require('./../controllers/userFunctionality');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -27,6 +28,10 @@ module.exports = (app) => {
 
     app.get('/contacts/contacts', contactController.formGet);
     app.post('/contacts/contacts', contactController.formPost);
+
+    app.get('/user/details', userFunctionalityController.formGet);
+
+
 
 };
 

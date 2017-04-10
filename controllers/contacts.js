@@ -1,7 +1,9 @@
 /**
  * Created by Hary on 7.4.2017 г..
  */
+
 const nodemailer = require('nodemailer');
+const Question = require('mongoose').model('Question');
 
 module.exports = {
 
@@ -32,8 +34,18 @@ formPost:(req, res) =>{
         to: 'softuniprojet@gmail.com', // list of receivers
         subject: subject, // Subject line
         text: "nothing", // plain text body
-        html: 'From '+ mail +' :' + message // html body
+        html: 'From '+id+ 'with mail ' + mail +' :' + message // html body
     };
+
+    //let questionParts;
+    //questionParts.author = id;
+    //questionParts.authorMail = mail;
+    //questionParts.subject = subject;
+    //questionParts.content = message;
+//
+  //  Question.create(questionParts);
+
+
 
 // send mail with defined transport object
    transporter.sendMail(mailOptions, (error, info) => {

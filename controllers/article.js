@@ -59,12 +59,7 @@ module.exports = {
 
             let id = req.params.id;
 
-                console.log(id);
-                console.log(Article.findById(id).then(x=>{
-                    console.log(x.content)
-                    }
 
-                ));
 
                 Article.findById(id).then(article => {
                 res.render('newsCreation/details',article)

@@ -20,11 +20,16 @@ module.exports = (app) => {
     app.post('/newsCreation/create', articleController.createPost);
 
     app.get('/news/newsBrowser', newsBrowser.loadNews);
+    app.get('/news/multyNewsBrowser', newsBrowser.loadMultyNews);
 
     app.get('/newsCreation/details/:id', articleController.detailsGet);
 
     app.get('/newsCreation/edit/:id', articleController.editGet);
     app.post('/newsCreation/edit/:id', articleController.editPost);
+
+    app.get('/newsCreation/delete/:id', articleController.deleteGet);
+    app.post('/newsCreation/delete/:id', articleController.deletePost);
+
 
     app.get('/contacts/contacts', contactController.formGet);
     app.post('/contacts/contacts', contactController.formPost);
@@ -33,6 +38,7 @@ module.exports = (app) => {
 
     app.get('/functionality/answer/:id', userFunctionalityController.answerFormGet);
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);
+
 
 
 

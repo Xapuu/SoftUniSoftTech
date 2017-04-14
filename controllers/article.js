@@ -2,6 +2,7 @@
  * Created by Hary on 6.4.2017 г..
  */
 const Article = require('mongoose').model('Article');
+const User = require('mongoose').model('User');
 
 function validateArticle (articleArgs, req) {
 
@@ -80,18 +81,27 @@ module.exports = {
 
     editPost: (req,res) =>{
 
-        let id= req.params.id;
+
 
         let articleArgs = req.body;
-
-
         let errorMsg = validateArticle(articleArgs,req);
-
         if (errorMsg) {
             res.render('newsCreation/edit', {
                 error: errorMsg
             });
 
+            return;
+        }
+
+        let id= req.params.id;
+        let user = req.user;
+        let adminAuthor = user.articles.indexOf(id)>-1||user.admin;
+
+
+        if (!adminAuthor){
+            res.render('newsCreation/edit',{
+                error: "You have no rights here!"
+            });
             return;
         }
 
@@ -103,6 +113,80 @@ module.exports = {
         //res.redirect(`/newsCreation/edit/${id}`);
             res.redirect('/news/newsBrowser');
         })
+    },
+
+    deleteGet:(req,res)=> {
+
+        let id = req.params.id;
+
+
+
+        Article.findById(id).then(article => {
+            res.render('newsCreation/delete',article)
+        });
+
+    },
+
+    deletePost:(req,res) => {
+
+
+        if(!req.isAuthenticated()){
+            res.redirect('/news/newsBrowser');
+
+            return;
+        }
+
+        let id = req.params.id;
+
+
+        let user = req.user;
+        let adminAuthor = user.articles.indexOf(id)>-1||user.admin;
+
+
+        if (adminAuthor) {
+
+
+            Article.findOne({_id: id}).then(article => {
+                let authorId = article.author;
+
+                User.findOne({_id: authorId}).then(user => {
+
+                    Article.remove({_id: id}).then(leftArticles => {
+
+                        let index = user.articles.indexOf(id);
+                        user.articles.splice(index, 1);
+                        user.save();
+                        res.redirect('/news/newsBrowser');
+
+                    })
+
+                })
+
+            });
+        }
+
+        else  {
+            res.render('newsCreation/edit',{
+                error: "You have no rights here!"
+            });
+            return;
+
+        }
+
+
+
+        //Article.remove({_id: id}).then(x => {
+//
+        //        let index = user.articles.indexOf(id);
+        //        console.log(index);
+        //        user.articles.splice(index, 1);
+        //        user.save();
+        //        console.log(id);
+        //        res.redirect('/news/newsBrowser');
+//
+//
+        //    }
+        //)
     }
 
 };

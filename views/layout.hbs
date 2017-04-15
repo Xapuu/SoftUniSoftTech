@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SoftUni Blog</title>
+    <title>Direct Services</title>
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
@@ -17,14 +17,9 @@
     <script src="./../javascripts/jquery.parallax.js"></script>
     <script src="./../javascripts/smoothscroll.js"></script>
     <script src="./../javascripts/custom.js"></script>
-
 </head>
 <body>
-
-
-
 <header>
-
 
     {{#if user}}
         <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -38,11 +33,11 @@
 
 
                     </button>
-                    <a href="/" class="navbar-brand">Company Name</a>
+                    <a href="/" class="navbar-brand"> <img id="dsImage" src="images/dsLogo.png" alt=""></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="/">Начало</a></li>
                         <li><a href="/">About us</a></li>
                         <li><a href="/">Products</a></li>
                         <li><a href="/">Solutions</a></li>
@@ -57,7 +52,6 @@
 
             </div>
         </div>
-
     {{/if}}
     {{#unless user}}
         <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -71,11 +65,11 @@
 
 
                     </button>
-                    <a href="/" class="navbar-brand">Company Name</a>
+                    <a href="/" class="navbar-brand"> <img id="dsImage" src="images/dsLogo.png" alt=""></a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="/">Начало</a></li>
                         <li><a href="/">About us</a></li>
                         <li><a href="/">Products</a></li>
                         <li><a href="/">Solutions</a></li>
@@ -83,7 +77,6 @@
                         <li><a href="/user/login">Login</a></li>
                         <li><a href="/user/register">Register</a></li>
                         <li><a href="/contacts/contacts">Contacts</a></li>
-
                     </ul>
                 </div>
 
@@ -98,9 +91,15 @@
 {{/if}}
 {{{body}}}
 </body>
-<footer>
-    <div class="container modal-footer">
-        <p>&copy; 2016 - Software University Foundation</p>
-    </div>
-</footer>
+
+
+    <Footer>
+        <div id="footerPage"    class="container modal-footer">
+            <p>&copy; 2016 - Software University Foundation</p>
+        </div>
+    </Footer>
+
+
+
+
 </html>

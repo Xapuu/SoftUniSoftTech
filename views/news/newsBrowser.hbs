@@ -2,24 +2,29 @@
     <div class="row">
         {{#each articles}}
             <div class="col-md-6">
+                <form action="#">
+
                 <article>
                     <header>
                         <h2>{{this.title}}</h2>
                     </header>
 
-                    <p>{{this.content}}
-                    </p>
+                    <textarea style="overflow:hidden" rows="4" cols="75">{{this.content}}
+                        </textarea>
+                    <br>
 
                     <small class="author">
                         {{this.author.fullName}}
                     </small>
 
-                    <footer>
+                    <div>
                         <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/newsCreation/details/{{this.id}}">Read more &raquo;</a>
+
+                            <a class="btn btn-primary"  href="/newsCreation/details/{{this.id}}">Read more &raquo;</a>
                         </div>
-                    </footer>
+                    </div>
                 </article>
+                </form>
             </div>
         {{/each}}
     </div>

@@ -203,6 +203,11 @@ a:hover, a:active, a:focus {
     Main Navigation             
 -----------------------------------------*/
 
+#dsImage{
+  height:180%;
+  margin:-5%;
+}
+
 .navbar-default {
     background: #ffffff;
     margin: 0 !important;
@@ -287,8 +292,37 @@ a:hover, a:active, a:focus {
     text-align: center;
 }
 
+body, html {
+  height: 100%;
+}
+#Container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#Container video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* The following will size the video to fit the full container. Not necessary, just nice.*/
+  min-width: 100%;
+  min-height: 100%;
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 0;
+}
+
+#Container div {
+  position: relative;
+  z-index: 1;
+}
+
 .main-home {
-  background: url('../images/home-bg.jpg') no-repeat;
+  background: url('home.jpg') no-repeat;
   height: 100vh;
 }
 
@@ -643,11 +677,23 @@ a:hover, a:active, a:focus {
    Footer section              
 -----------------------------------------*/
 
-footer {
-    background: #000;
-    color: #ffffff;
-    padding: 80px 0px;
-    position: relative;
+
+#articalFooter{
+  position: absolute;
+
+}
+
+/*footer {
+
+}*/
+
+
+footer{
+  background: #000;
+  color: #ffffff;
+  padding: 80px 0px;
+  position: relative;
+
 }
 
 footer .col-md-4 .fa {
@@ -789,4 +835,27 @@ footer .footer-copyright {
   }
 
 }
-
+#pesho{
+ background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0507SoTl8YaSpjS2GO31sz5WMkRighmD6kKD7ft-1gLe_bBv8ulZU2RlJ");
+  z-index: 100000;
+}
+.yellow{
+  color:yellow;
+}
+.green{
+  color:green;
+}
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}

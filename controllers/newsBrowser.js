@@ -6,9 +6,7 @@ const Article = require('mongoose').model('Article');
 module.exports = {
     loadNews: (req, res) => {
 
-        Article.find({}).sort({date:-1}).limit(6).populate('author').then(articles=>{
-           console.log(articles);
-
+        Article.find({}).sort({date:+-1}).limit(4).populate('author').then(articles=>{
 
             res.render('news/newsBrowser',{
                 articles
@@ -16,5 +14,21 @@ module.exports = {
         });
 
 
+    },
+
+    loadMultyNews: (req,res) => {
+
+        let pagesCount;
+
+       Article.find({}).count().then(articles=>{
+
+           pagesCount=Math.ceil(articles/4);
+           console.log(pagesCount);
+        });
+
+
+
+
     }
+
 };

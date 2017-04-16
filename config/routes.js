@@ -41,6 +41,8 @@ module.exports = (app) => {
     app.get('/functionality/answer/:id', userFunctionalityController.answerFormGet);
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);
 
+    app.get('/functionality/questions', userFunctionalityController.questionView);
+
 
 
 

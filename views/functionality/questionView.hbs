@@ -1,0 +1,28 @@
+<div class="container-fluid">
+
+{{#each questions}}
+
+<div class="row">
+    <div class="col-md-4">{{this.subject}}</div>
+    <div class="col-md-4">{{this.author}}</div>
+    <div class="col-md-4">{{this.authorMail}}</div>
+</div>
+    <div>
+        {{this.content}}
+    </div>
+
+    <div>
+        {{#if this.answered}}
+                <p>Answered by {{this.answeredBy}}</p>
+            {{else}}
+            <p>Unanswered  <a class="btn btn-default btn-xs" href="/functionality/answer/{{this.id}}">Answer Now</a></p>
+
+        {{/if}}
+    </div>
+
+
+
+
+{{/each}}
+
+</div>

@@ -23,6 +23,15 @@ module.exports = {
         else {
             Article.find({}).sort({date:-1}).limit(4).then(articles => {
 
+                for (let index = 1; index<4;index++){
+
+                    articles[index].content= articles[index].content.substring(0,200)+"...";
+                }
+
+                articles[0].content= articles[0].content.substring(0,1000)+"...";
+
+
+
                 Question.find({answered:false}).then(unanswered =>{
 
 

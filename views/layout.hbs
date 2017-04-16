@@ -42,9 +42,23 @@
                         <li><a href="/">Products</a></li>
                         <li><a href="/">Solutions</a></li>
                         <li><a href="/news/newsBrowser">News</a></li>
-                        <li><a href="/user/logout">Logout</a></li>
-                        <li><a href="/newsCreation/create">Create News</a></li>
-                        <li><a href="/user/details">Welcome({{user.email}})</a></li>
+
+                        <li>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <a href="/user/details">Welcome({{user.email}})</a>
+                            </button>
+                            <div class="dropdown-content">
+                                <ul id="dropdown-list">
+                                    <li><a href="/newsCreation/create">Create News</a></li>
+                                    <li><a href="/user/logout">Logout</a></li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                        </li>
 
 
                     </ul>

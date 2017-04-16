@@ -31,6 +31,8 @@ module.exports = (app) => {
     app.post('/newsCreation/delete/:id', articleController.deletePost);
 
 
+    //some random text that does nothing at all
+
     app.get('/contacts/contacts', contactController.formGet);
     app.post('/contacts/contacts', contactController.formPost);
 

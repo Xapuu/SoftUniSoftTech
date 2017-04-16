@@ -1,5 +1,40 @@
 <div class="container body-content">
     <div class="row">
+
+        {{#if mainArticle}}
+
+        <div class="col-md-6">
+            <form action="#">
+
+                <article>
+                    <header>
+                        <h2>{{mainArticle.title}}</h2>
+                    </header>
+
+                    <p id="mainArticleContent">{{mainArticle.content}}</p>
+                    <br>
+
+                    <small class="author">
+                        {{mainArticle.author.fullName}}
+
+
+
+                    </small>
+
+                    <div>
+                        <div class="pull-right">
+
+                            <a class="btn btn-primary"  href="/newsCreation/details/{{mainArticle.id}}">Read more &raquo;</a>
+                        </div>
+                    </div>
+                </article>
+            </form>
+        </div>
+
+
+        {{/if}}
+
+
         {{#each articles}}
             <div class="col-md-6">
                 <form action="#">
@@ -9,8 +44,8 @@
                         <h2>{{this.title}}</h2>
                     </header>
 
-                    <textarea style="overflow:hidden" rows="4" cols="75">{{this.content}}
-                        </textarea>
+                    <diiv>{{this.content}}
+                        </diiv>
                     <br>
 
                     <small class="author">
@@ -28,11 +63,12 @@
             </div>
         {{/each}}
 
-        <div id="moreNews">
-            {{#if articles}}
 
-                <p><a class="btn btn-default btn-xs"  href="/news/multyNewsBrowser">Browse more</a></p>
-            {{/if}}
-        </div>
+    </div>
+    <div id="moreNews">
+        {{#if articles}}
+
+            <p><a class="btn btn-default btn-xs center-block"  href="/news/multyNewsBrowser">Browse more</a></p>
+        {{/if}}
     </div>
 </div>

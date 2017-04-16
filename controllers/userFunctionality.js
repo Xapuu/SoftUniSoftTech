@@ -28,7 +28,14 @@ module.exports = {
                     articles[index].content= articles[index].content.substring(0,200)+"...";
                 }
 
-                articles[0].content= articles[0].content.substring(0,1000)+"...";
+                let baseArticle = articles[0].content;
+
+                if (baseArticle.length>1000){
+                    baseArticle=baseArticle.substring(0,1000)+"..."
+                }
+                else{
+                    baseArticle=baseArticle+" ".repeat(1000-baseArticle.length);
+                }
 
 
 

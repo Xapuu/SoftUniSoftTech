@@ -4,9 +4,24 @@ const articleController = require('./../controllers/article');
 const newsBrowser = require('./../controllers/newsBrowser');
 const contactController = require('./../controllers/contacts');
 const userFunctionalityController = require('./../controllers/userFunctionality');
+const archiveController = require('./../controllers/archives');
+const servicesController = require('./../controllers/services');
+const mailingController = require('./../controllers/meiling');
+const lettersProductionController = require('./../controllers/lettersProduction');
+const digitalPrintController = require('./../controllers/digitalPrint');
+
+
 
 module.exports = (app) => {
     app.get('/', homeController.index);
+
+    app.get('/services/lettersProduction',lettersProductionController.lettersProduction)
+
+    app.get('/services/services', servicesController.services);
+
+    app.get('/services/digitalPrint',digitalPrintController.digitalPrint);
+
+    app.get('/services/meiling', mailingController.meiling);
 
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);

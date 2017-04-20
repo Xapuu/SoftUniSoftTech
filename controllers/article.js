@@ -4,7 +4,16 @@
 const Article = require('mongoose').model('Article');
 const User = require('mongoose').model('User');
 
-function validateArticle (articleArgs, req) {
+function authenticaation(req) {
+
+    let errorMsg = '';
+    if (!req.isAuthenticated()) {
+        errorMsg = 'U dont belong Here'
+    }
+    return errorMsg;
+}
+
+function validateArticle(articleArgs, req) {
 
     let errorMsg = '';
     if (!req.isAuthenticated()) {
@@ -25,8 +34,7 @@ module.exports = {
     createPost: (req, res) => {
         let articleParts = req.body;
 
-        let errorMsg = validateArticle(articleParts,req);
-
+        let errorMsg = validateArticle(articleParts, req);
 
 
         if (errorMsg) {
@@ -56,35 +64,40 @@ module.exports = {
         });
     },
 
-            detailsGet:(req, res) => {
+    detailsGet: (req, res) => {
 
-            let id = req.params.id;
-
-
-
-                Article.findById(id).then(article => {
-                res.render('newsCreation/details',article)
-            });
-
-        },
-
-    editGet: (req, res) => {
         let id = req.params.id;
 
-        Article.findById(id).then(article =>{
 
-            res.render('newsCreation/edit',article)
-
-        })
+        Article.findById(id).then(article => {
+            res.render('newsCreation/details', article)
+        });
 
     },
 
-    editPost: (req,res) =>{
+    editGet: (req, res) => {
 
+        if (authenticaation(req)) {
+
+            res.redirect('/');
+            return;
+        }
+        else {
+            let id = req.params.id;
+
+            Article.findById(id).then(article => {
+
+                res.render('newsCreation/edit', article)
+
+            })
+        }
+    },
+
+    editPost: (req, res) => {
 
 
         let articleArgs = req.body;
-        let errorMsg = validateArticle(articleArgs,req);
+        let errorMsg = validateArticle(articleArgs, req);
         if (errorMsg) {
             res.render('newsCreation/edit', {
                 error: errorMsg
@@ -93,13 +106,13 @@ module.exports = {
             return;
         }
 
-        let id= req.params.id;
+        let id = req.params.id;
         let user = req.user;
-        let adminAuthor = user.articles.indexOf(id)>-1||user.admin;
+        let adminAuthor = user.articles.indexOf(id) > -1 || user.admin;
 
 
-        if (!adminAuthor){
-            res.render('newsCreation/edit',{
+        if (!adminAuthor) {
+            res.render('newsCreation/edit', {
                 error: "You have no rights here!"
             });
             return;
@@ -107,30 +120,33 @@ module.exports = {
 
         // Here I can Push last edits to the article
 
-        Article.update({_id:id}, {$set: {title: articleArgs.title, content: articleArgs.content}})
-        .then(err =>{
+        Article.update({_id: id}, {$set: {title: articleArgs.title, content: articleArgs.content}})
+            .then(err => {
 
-        //res.redirect(`/newsCreation/edit/${id}`);
-            res.redirect('/news/newsBrowser');
-        })
+                //res.redirect(`/newsCreation/edit/${id}`);
+                res.redirect('/news/newsBrowser');
+            })
     },
 
-    deleteGet:(req,res)=> {
+    deleteGet: (req, res) => {
 
-        let id = req.params.id;
+        if (authenticaation(req)) {
+            res.redirect('/')
+        }
+        else {
+            let id = req.params.id;
 
 
-
-        Article.findById(id).then(article => {
-            res.render('newsCreation/delete',article)
-        });
-
+            Article.findById(id).then(article => {
+                res.render('newsCreation/delete', article)
+            });
+        }
     },
 
-    deletePost:(req,res) => {
+    deletePost: (req, res) => {
 
 
-        if(!req.isAuthenticated()){
+        if (authenticaation(req)) {
             res.redirect('/news/newsBrowser');
 
             return;
@@ -140,7 +156,7 @@ module.exports = {
 
 
         let user = req.user;
-        let adminAuthor = user.articles.indexOf(id)>-1||user.admin;
+        let adminAuthor = user.articles.indexOf(id) > -1 || user.admin;
 
 
         if (adminAuthor) {
@@ -165,14 +181,13 @@ module.exports = {
             });
         }
 
-        else  {
-            res.render('newsCreation/edit',{
+        else {
+            res.render('newsCreation/edit', {
                 error: "You have no rights here!"
             });
             return;
 
         }
-
 
 
         //Article.remove({_id: id}).then(x => {

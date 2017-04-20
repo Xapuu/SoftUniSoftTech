@@ -41,11 +41,22 @@
                         <li class="active"><a href="/">Начало</a></li>
                         <li><a href="/">About us</a></li>
                         <li><a href="/">Products</a></li>
-                        <li><a href="/">Solutions</a></li>
+                        <li><a href="/services/services">Услуги</a></li>
                         <li><a href="/news/newsBrowser">News</a></li>
-                        <li><a href="/user/logout">Logout</a></li>
-                        <li><a href="/newsCreation/create">Create News</a></li>
-                        <li><a href="/user/details">Welcome({{user.email}})</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    <a href="/user/details">Welcome({{user.email}})</a>
+                                </button>
+                                <div class="dropdown-content">
+                                    <ul id="dropdown-list">
+                                        <li><a href="/newsCreation/create">Create News</a></li>
+                                        <li><a href="/functionality/questions">View all Questions</a></li>
+                                        <li><a href="/user/logout">Logout</a></li>
+
+                                    </ul>
+                                </div>
+                        </li>
 
 
                     </ul>
@@ -73,7 +84,7 @@
                         <li class="active"><a href="/">Начало</a></li>
                         <li><a href="/">About us</a></li>
                         <li><a href="/">Products</a></li>
-                        <li><a href="/">Solutions</a></li>
+                        <li><a href="/services/services">Услуги</a></li>
                         <li><a href="/news/newsBrowser">News</a></li>
                         <li><a href="/user/login">Login</a></li>
                         <li><a href="/user/register">Register</a></li>
@@ -94,13 +105,11 @@
 </body>
 
 
-    <Footer>
-        <div id="footerPage"    class="container modal-footer">
-            <p>&copy; 2016 - Software University Foundation</p>
-        </div>
-    </Footer>
-
-
+<Footer>
+    <div id="footerPage" class="container modal-footer">
+        <p>&copy; 2016 - Software University Foundation</p>
+    </div>
+</Footer>
 
 
 </html>

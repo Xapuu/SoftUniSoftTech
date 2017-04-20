@@ -1,0 +1,34 @@
+<div class="container-fluid">
+
+{{#each questions}}
+
+<div class="row" style="padding-top: 40px; padding-bottom: 20px">
+    <div class="col-md-4">
+        <p><b>Subject:</b> {{this.subject}}</p>
+    </div>
+    <div class="col-md-4">
+        <p><b>From:</b> {{this.author}}</p>
+    </div>
+    <div class="col-md-4">
+        <p><b>Mail:</b> {{this.authorMail}}</p>
+    </div>
+</div>
+    <div class="well well-sm">
+        <p>{{this.content}}</p>
+    </div>
+
+    <div style="border-bottom: solid black; padding-bottom: 20px">
+        {{#if this.answered}}
+                <p>Answered by {{this.answeredBy}}</p>
+            {{else}}
+            <p>Unanswered  <a class="btn btn-success btn-xs" href="/functionality/answer/{{this.id}}">Answer Now</a></p>
+
+        {{/if}}
+    </div>
+
+
+
+
+{{/each}}
+
+</div>

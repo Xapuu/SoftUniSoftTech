@@ -858,3 +858,45 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
+
+.dropbtn {
+  background-color:white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  background-color:white;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  background-color:white;
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+}
+
+.dropdown-content a {
+  background-color:white;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#dropdown-list{
+  list-style-type: none !important;
+}

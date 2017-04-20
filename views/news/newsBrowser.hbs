@@ -1,38 +1,81 @@
 <div class="container body-content">
     <div class="row">
-        {{#each articles}}
+
+        {{#if mainArticle}}
+
+            <div class="col-md-12">
+                <form action="#">
+
+                    <article>
+                        <header>
+                            <h2>{{mainArticle.title}}</h2>
+                        </header>
+
+                        <p id="mainArticleContent">{{mainArticle.content}}</p>
+                        <br>
+
+                        <small class="author">
+                            {{mainArticle.author.fullName}}
+
+                        </small>
+
+                        <div>
+                            <div class="pull-right">
+
+                                <a class="btn btn-primary" href="/newsCreation/details/{{mainArticle.id}}">Read
+                                    more &raquo;</a>
+                            </div>
+                        </div>
+                    </article>
+                </form>
+            </div>
+        </div>
+
+
+
+        {{/if}}
+
+
+<div class="row">
+
+
+            {{#each articles}}
             <div class="col-md-6">
                 <form action="#">
 
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                    </header>
+                    <article>
+                        <header>
+                            <h2>{{this.title}}</h2>
+                        </header>
 
-                    <textarea style="overflow:hidden" rows="4" cols="75">{{this.content}}
-                        </textarea>
-                    <br>
+                        <diiv>{{this.content}}
+                        </diiv>
+                        <br>
 
-                    <small class="author">
-                        {{this.author.fullName}}
-                    </small>
+                        <small class="author">
+                            {{this.author.fullName}}
+                        </small>
 
-                    <div>
-                        <div class="pull-right">
+                        <div>
+                            <div class="pull-right">
 
-                            <a class="btn btn-primary"  href="/newsCreation/details/{{this.id}}">Read more &raquo;</a>
+                                <a class="btn btn-primary" href="/newsCreation/details/{{this.id}}">Read
+                                    more &raquo;</a>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
                 </form>
             </div>
-        {{/each}}
+            {{/each}}
 
-        <div id="moreNews">
-            {{#if articles}}
 
-                <p><a class="btn btn-default btn-xs"  href="/news/multyNewsBrowser">Browse more</a></p>
-            {{/if}}
-        </div>
+
+    </div>
+    <br>
+    <div id="moreNews">
+        {{#if articles}}
+
+            <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser/1">Browse more</a></p>
+        {{/if}}
     </div>
 </div>

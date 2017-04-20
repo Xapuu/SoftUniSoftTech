@@ -36,3 +36,14 @@
       $('html, body').animate({scrollTop: 0}, 300);
       })
 
+
+
+
+  function goToFunc() {
+        let page = document.getElementById('goToPage');
+
+         return console.log(page);
+
+        //return   window.location = "/news/multyNewsBrowser"+page;
+
+  }

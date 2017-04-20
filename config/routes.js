@@ -35,7 +35,9 @@ module.exports = (app) => {
     app.post('/newsCreation/create', articleController.createPost);
 
     app.get('/news/newsBrowser', newsBrowser.loadNews);
-    app.get('/news/multyNewsBrowser', newsBrowser.loadMultyNews);
+
+    app.get('/news/multyNewsBrowser/:page', newsBrowser.loadMultyNews);
+    app.post('/news/multyNewsBrowser', newsBrowser.wantedPage);
 
     app.get('/newsCreation/details/:id', articleController.detailsGet);
 

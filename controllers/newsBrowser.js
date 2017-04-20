@@ -33,17 +33,38 @@ module.exports = {
 
     loadMultyNews: (req,res) => {
 
-        let pagesCount;
-
-       Article.find({}).count().then(articles=>{
-
-           pagesCount=Math.ceil(articles/4);
-           console.log(pagesCount);
-        });
 
 
+      Article.find({}).sort({date:-1}).then(articles =>{
+
+          let currentPage = parseInt(req.params.page);
+
+          console.log(req);
+
+          console.log(currentPage);
+
+          let lastPage = Math.ceil(articles.length/10);
+
+          let currentPageValue = (currentPage>lastPage?lastPage:currentPage<1?1:currentPage)*10;
 
 
+              let kurec = articles.slice(currentPageValue-10 ,currentPageValue);
+
+              let pages = {firstPage:1,prevPage:currentPage-1 < 1?currentPage:currentPage-1,currentPage:currentPage>lastPage?lastPage:currentPage<1?1:currentPage
+                  ,nextPage:currentPage+1>lastPage?lastPage:currentPage+1,lastPage:lastPage}
+
+              res.render('news/multyNewsBrowser',{kurec, pages});
+
+
+
+
+      });
+
+    },
+
+    wantedPage: (req,res)=>{
+        let targetPage= req.body.searchedPage;
+        res.redirect('/news/multyNewsBrowser/'+targetPage);
     }
 
 };

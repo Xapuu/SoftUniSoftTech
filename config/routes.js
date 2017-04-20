@@ -5,11 +5,19 @@ const newsBrowser = require('./../controllers/newsBrowser');
 const contactController = require('./../controllers/contacts');
 const userFunctionalityController = require('./../controllers/userFunctionality');
 
+var recaptcha = require('express-recaptcha');
+
+recaptcha.init('6Ld-rB0UAAAAANyXZKFiGbBc1J7NM_NQg4Y93xeF', '6Ld-rB0UAAAAANoVTHTNIkiX9p1H7HhqBlhQvWnE');
+
+
+
+
+
 module.exports = (app) => {
     app.get('/', homeController.index);
 
-    app.get('/user/register', userController.registerGet);
-    app.post('/user/register', userController.registerPost);
+    app.get('/user/register', recaptcha.middleware.render, userController.registerGet);
+    app.post('/user/register', recaptcha.middleware.verify, userController.registerPost);
 
     app.get('/user/login', userController.loginGet);
     app.post('/user/login', userController.loginPost);

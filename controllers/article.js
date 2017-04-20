@@ -49,7 +49,7 @@ module.exports = {
                         error: err.message
                     });
                 } else {
-                    res.redirect('/');
+                    res.redirect('/news/newsBrowser');
                 }
             });
 

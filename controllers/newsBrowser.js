@@ -7,12 +7,12 @@ module.exports = {
     loadNews: (req, res) => {
 
 
-        Article.find({}).sort({date:-1}).limit(6).populate('author').then(articles => {
+        Article.find({}).sort({date:-1}).limit(5).populate('author').then(articles => {
 
             mainArticle = articles[0];
 
 
-            for (let index = 1; index<6;index++){
+            for (let index = 1; index<articles.length;index++){
                 articles[index].content= articles[index].content.substring(0,200)+"...";
             }
 
@@ -53,7 +53,11 @@ module.exports = {
               let pages = {firstPage:1,prevPage:currentPage-1 < 1?currentPage:currentPage-1,currentPage:currentPage>lastPage?lastPage:currentPage<1?1:currentPage
                   ,nextPage:currentPage+1>lastPage?lastPage:currentPage+1,lastPage:lastPage}
 
-              res.render('news/multyNewsBrowser',{kurec, pages});
+                  if(kurec){
+                  res.render('news/multyNewsBrowser',{kurec, pages});
+                  }else{
+                      res.render('news/multyNewsBrowser');
+                  }
 
 
 

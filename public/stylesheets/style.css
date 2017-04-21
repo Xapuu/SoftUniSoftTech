@@ -1,9 +1,7 @@
 /*
-
 Template 2085 Neuron
 
 http://www.tooplate.com/view/2085-neuron
-
 */
 
 body {
@@ -13,15 +11,12 @@ body {
 		font-weight: 300;
     overflow-x: hidden;
 }
-
-
 /*---------------------------------------
     Typorgraphy              
 -----------------------------------------*/
 #myContact{
   text-align: center;
 }
-
 #msgBox{
   padding-top: 10px;
   padding-bottom: 10px;
@@ -321,7 +316,7 @@ body, html {
 }
 
 .main-home {
-  background: url('home.jpg') no-repeat;
+
   height: 100vh;
 }
 

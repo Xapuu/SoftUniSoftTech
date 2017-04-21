@@ -9,13 +9,52 @@ const servicesController = require('./../controllers/services');
 const mailingController = require('./../controllers/meiling');
 const lettersProductionController = require('./../controllers/lettersProduction');
 const digitalPrintController = require('./../controllers/digitalPrint');
-
-
+const cardsMailingController = require('./../controllers/cardsMailing');
+const transPrintController = require('./../controllers/transPrint');
+const booksPrintingController = require('./../controllers/booksPrinting');
+const digitalMarcetingController= require('./../controllers/digitalMarceting');
+const elArhivesController = require('./../controllers/elArhives');
+const scaningController = require('./../controllers/scaning');
+const formulqrsController = require('./../controllers/formulqrs');
+const physicalStorageController = require('./../controllers/physicalStorage');
+const elCommunicationsController = require('./../controllers/elCommunications');
+const e_invoiceController = require('./../controllers/e-invoice');
+const smsController = require('./../controllers/sms');
+const emailController = require('./../controllers/email');
+const elBooksController = require('./../controllers/elBooks');
+const solutionController = require('./../controllers/solution')
 
 module.exports = (app) => {
     app.get('/', homeController.index);
 
-    app.get('/services/lettersProduction',lettersProductionController.lettersProduction)
+    app.get('/solution/solution',solutionController.solution);
+
+    app.get('/services/elBooks',elBooksController.elBooks);
+
+    app.get('/services/email',emailController.email);
+
+    app.get('/services/sms',smsController.sms);
+
+    app.get('/services/e-invoice',e_invoiceController.einvoice);
+
+    app.get('/services/elCommunications',elCommunicationsController.elCommunications);
+
+    app.get('/services/physicalStorage',physicalStorageController.physicalStorage);
+
+    app.get('/services/scaning',scaningController.scaning);
+
+    app.get('/services/formulqrs',formulqrsController.formulqrs);
+    app.get('/services/elArhives',elArhivesController.elArhives);
+
+    app.get('/services/digitalMarceting',digitalMarcetingController.digitalMarceting);
+
+    app.get('/services/booksPrinting',booksPrintingController.booksPrinting);
+
+    app.get('/services/transPrint',transPrintController.transPrint);
+
+    app.get('/services/cardsMailing',cardsMailingController.cardsMailing);
+
+    app.get('/services/lettersProduction',lettersProductionController.lettersProduction);
 
     app.get('/services/services', servicesController.services);
 

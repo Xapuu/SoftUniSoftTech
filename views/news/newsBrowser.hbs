@@ -3,7 +3,7 @@
 
         {{#if mainArticle}}
 
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <form action="#">
 
                     <article>
@@ -29,14 +29,18 @@
                     </article>
                 </form>
             </div>
+        </div>
+
 
 
         {{/if}}
 
 
+<div class="row">
 
-        <div class="col-md-6">
+
             {{#each articles}}
+            <div class="col-md-6">
                 <form action="#">
 
                     <article>
@@ -61,8 +65,9 @@
                         </div>
                     </article>
                 </form>
+            </div>
             {{/each}}
-        </div>
+
 
 
     </div>
@@ -70,7 +75,7 @@
     <div id="moreNews">
         {{#if articles}}
 
-            <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser">Browse more</a></p>
+            <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser/1">Browse more</a></p>
         {{/if}}
     </div>
 </div>

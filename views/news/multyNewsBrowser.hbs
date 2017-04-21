@@ -1,0 +1,50 @@
+
+<div class="row container-fluid">
+{{#each kurec}}
+
+    <div class="col-md-6">
+
+        <form action="#">
+
+            <article>
+                <header>
+                    <h2>{{this.title}}</h2>
+                </header>
+
+                <diiv>{{this.content}}
+                </diiv>
+                <br>
+
+                <small class="author">
+                    {{this.author.fullName}}
+                </small>
+
+                <div>
+                    <div class="pull-right">
+
+                        <a class="btn btn-primary" href="/newsCreation/details/{{this.id}}">Read
+                            more &raquo;</a>
+                    </div>
+                </div>
+            </article>
+        </form>
+            </div>
+
+
+{{/each}}
+
+    <div class="row text-center">
+        <a href="/news/multyNewsBrowser/{{pages.firstPage}}"><button>FirstPage</button></a>
+        <a href="/news/multyNewsBrowser/{{pages.prevPage}}"><button>PrevPage</button></a>
+        <a href="/news/multyNewsBrowser/{{pages.nextPage}}"><button>NextPage</button></a>
+        <a href="/news/multyNewsBrowser/{{pages.lastPage}}"><button>LastPage</button></a>
+    </div>
+
+    <div class="row text-center">
+        <form method="POST" action="/news/multyNewsBrowser">
+        <textarea id="goToPage" rows="1"  cols="1" name="searchedPage" id="searchedPage" placeholder="{{pages.currentPage}}"></textarea>
+        <button type="submit">Go To</button></a>
+
+        </form>
+    </div>
+</div>

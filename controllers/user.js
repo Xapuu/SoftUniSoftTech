@@ -1,13 +1,19 @@
 const User = require('mongoose').model('User');
 const encryption = require('./../utilities/encryption');
 
+
+
 module.exports = {
     registerGet: (req, res) => {
-        res.render('user/register');
+        res.render('user/register', {captcha: req.recaptcha});
     },
 
     registerPost:(req, res) => {
         let registerArgs = req.body;
+        if (req.recaptcha.error) {
+            res.render("user/register", registerArgs);
+            return;
+        }
 
         User.findOne({email: registerArgs.email}).then(user => {
             let errorMsg = '';
@@ -21,6 +27,7 @@ module.exports = {
                 registerArgs.error = errorMsg;
                 res.render('user/register', registerArgs)
             } else {
+
                 let salt = encryption.generateSalt();
                 let passwordHash = encryption.hashPassword(registerArgs.password, salt);
 

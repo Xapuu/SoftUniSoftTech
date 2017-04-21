@@ -9,6 +9,7 @@ const servicesController = require('./../controllers/services');
 const mailingController = require('./../controllers/meiling');
 const lettersProductionController = require('./../controllers/lettersProduction');
 const digitalPrintController = require('./../controllers/digitalPrint');
+<<<<<<< HEAD
 const cardsMailingController = require('./../controllers/cardsMailing');
 const transPrintController = require('./../controllers/transPrint');
 const booksPrintingController = require('./../controllers/booksPrinting');
@@ -23,10 +24,17 @@ const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
 const solutionController = require('./../controllers/solution')
+=======
+
+var recaptcha = require('express-recaptcha');
+
+recaptcha.init('6Ld-rB0UAAAAANyXZKFiGbBc1J7NM_NQg4Y93xeF', '6Ld-rB0UAAAAANoVTHTNIkiX9p1H7HhqBlhQvWnE');
+>>>>>>> 1f24866db8fd0377ea9a0a937e1381c331053b83
 
 module.exports = (app) => {
     app.get('/', homeController.index);
 
+<<<<<<< HEAD
     app.get('/solution/solution',solutionController.solution);
 
     app.get('/services/elBooks',elBooksController.elBooks);
@@ -53,6 +61,11 @@ module.exports = (app) => {
     app.get('/services/transPrint',transPrintController.transPrint);
 
     app.get('/services/cardsMailing',cardsMailingController.cardsMailing);
+=======
+    // GitHEAD
+    app.get('/user/register', recaptcha.middleware.render, userController.registerGet);
+    app.post('/user/register', recaptcha.middleware.verify, userController.registerPost);
+>>>>>>> 1f24866db8fd0377ea9a0a937e1381c331053b83
 
     app.get('/services/lettersProduction',lettersProductionController.lettersProduction);
 
@@ -74,7 +87,9 @@ module.exports = (app) => {
     app.post('/newsCreation/create', articleController.createPost);
 
     app.get('/news/newsBrowser', newsBrowser.loadNews);
-    app.get('/news/multyNewsBrowser', newsBrowser.loadMultyNews);
+
+    app.get('/news/multyNewsBrowser/:page', newsBrowser.loadMultyNews);
+    app.post('/news/multyNewsBrowser', newsBrowser.wantedPage);
 
     app.get('/newsCreation/details/:id', articleController.detailsGet);
 
@@ -96,9 +111,6 @@ module.exports = (app) => {
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);
 
     app.get('/functionality/questions', userFunctionalityController.questionView);
-
-
-
 
 };
 

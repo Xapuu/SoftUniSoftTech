@@ -17,6 +17,7 @@
     <script src="./../javascripts/jquery.parallax.js"></script>
     <script src="./../javascripts/smoothscroll.js"></script>
     <script src="./../javascripts/custom.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 <header>
@@ -42,18 +43,19 @@
                         <li><a href="/">Products</a></li>
                         <li><a href="/services/services">Услуги</a></li>
                         <li><a href="/news/newsBrowser">News</a></li>
-                        <li><a href="/newsCreation/create">Create News</a></li>
-                        <li><a href="/functionality/questions">View all Questions</a> </li>
-                        <li><a href="/user/logout">Logout</a></li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="dropbtn">
+                                    <a href="/user/details">Welcome({{user.email}})</a>
+                                </button>
+                                <div class="dropdown-content">
+                                    <ul id="dropdown-list">
+                                        <li><a href="/newsCreation/create">Create News</a></li>
+                                        <li><a href="/functionality/questions">View all Questions</a></li>
+                                        <li><a href="/user/logout">Logout</a></li>
 
-                        <div class="dropdown">
-                            <button class="dropbtn">
-                                <a href="/user/details">Welcome({{user.email}})</a>
-                            </button>
-
-
-
-                        </div>
+                                    </ul>
+                                </div>
                         </li>
 
 
@@ -103,13 +105,11 @@
 </body>
 
 
-    <Footer>
-        <div id="footerPage"    class="container modal-footer">
-            <p>&copy; 2016 - Software University Foundation</p>
-        </div>
-    </Footer>
-
-
+<Footer>
+    <div id="footerPage" class="container modal-footer">
+        <p>&copy; 2016 - Software University Foundation</p>
+    </div>
+</Footer>
 
 
 </html>

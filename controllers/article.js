@@ -54,13 +54,14 @@ module.exports = {
                     console.log(err.message);
                 }
             });
+            articleParts.imagesFromNewsPath = `/imagesFromNews/${image.name}`;
         }
 
         let userId = req.user.id;
 
         articleParts.author = userId;
 
-        articleParts.imagesFromNewsPath = `/imagesFromNews/${image.name}`;
+        //articleParts.imagesFromNewsPath = `/imagesFromNews/${image.name}`;
 
         Article.create(articleParts).then(article => {
 

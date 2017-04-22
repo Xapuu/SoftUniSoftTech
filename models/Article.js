@@ -8,7 +8,8 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
     title: { type:String, required: true},
      content:{type:String, required:true},
      author:{type: ObjectId, required:true, ref:'User'},
-     date:{type:Date, default: Date.now()}
+     date:{type:Date, default: Date.now()},
+     imageFromNewsPath:{type: String},
  });
 
  const Article = mongoose.model('Article', articleSchema);

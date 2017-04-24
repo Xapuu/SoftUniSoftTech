@@ -35,8 +35,6 @@ module.exports = {
         let articleParts = req.body;
 
         let errorMsg = validateArticle(articleParts, req);
-
-
         if (errorMsg) {
             res.render('newsCreation/create', {
                 error: errorMsg
@@ -44,9 +42,26 @@ module.exports = {
 
             return;
         }
+
+        let image = req.files.image;
+
+        if(image){
+            let filename = image.name;
+
+
+            image.mv(`./public/imagesFromNews/${filename}`, err=> {
+                if(err) {
+                    console.log(err.message);
+                }
+            });
+            articleParts.imagesFromNewsPath = `/imagesFromNews/${image.name}`;
+        }
+
         let userId = req.user.id;
+
         articleParts.author = userId;
 
+        //articleParts.imagesFromNewsPath = `/imagesFromNews/${image.name}`;
 
         Article.create(articleParts).then(article => {
 

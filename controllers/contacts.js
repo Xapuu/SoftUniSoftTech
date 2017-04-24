@@ -38,14 +38,14 @@ module.exports = {
         };
 
         let questionObj = {
-          author:id,
+            author:id,
             authorMail:mail,
             subject:subject,
-            content:message
+            content:message,
         };
 
         Question.create(questionObj);
-        console.log(questionObj);
+
 
 
 

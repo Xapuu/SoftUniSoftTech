@@ -77,57 +77,58 @@ module.exports = {
 
     answerFormPost: (req, res) => {
 
-        if(validateArticle(req)){
+        if (validateArticle(req)) {
             res.redirect('/');
         }
         else {
 
 
+            let questionId = req.params.id;
+            let msg = req.body.message;
 
-        let questionId = req.params.id;
-        let msg = req.body.message;
-
-        let userParams = req.user;
-        let userId = userParams.id;
-
-        Question.update({_id: questionId}, {$set: {answered: true, answeredBy: userId, answer: msg}}).then(x => {
+            let userParams = req.user;
+            let userId = userParams.id;
+            console.log(userId);
 
 
-            Question.findOne({_id: questionId}).then(question => {
+            Question.update({_id: questionId}, {$set: {answered: true, answeredBy: userId, answer: msg}}).then(x => {
 
 
-                let mailRecepient = question.authorMail;
-                let subject = question.subject;
-                let replyMessage = msg;
-
-                let transporter = nodemailer.createTransport({
-                    service: 'gmail',
-                    auth: {
-                        user: 'softuniprojet@gmail.com',
-                        pass: 'softuniprojet1234'
-                    }
-                });
-
-                let mailOptions = {
-                    from: '', // sender address
-                    to: mailRecepient, // list of receivers
-                    subject: subject, // Subject line
-                    text: "nothing", // plain text body
-                    html: replyMessage// html body
-                };
+                Question.findOne({_id: questionId}).then(question => {
 
 
-                //  send mail with defined transport object
-                transporter.sendMail(mailOptions, (error, info) => {
-                    if (error) {
-                        return console.log(error);
-                    }
-                });
-                res.redirect('/user/details');
-            })
+                    let mailRecepient = question.authorMail;
+                    let subject = question.subject;
+                    let replyMessage = msg;
+
+                    let transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        auth: {
+                            user: 'softuniprojet@gmail.com',
+                            pass: 'softuniprojet1234'
+                        }
+                    });
+
+                    let mailOptions = {
+                        from: '', // sender address
+                        to: mailRecepient, // list of receivers
+                        subject: subject, // Subject line
+                        text: "nothing", // plain text body
+                        html: replyMessage// html body
+                    };
 
 
-        });
+                    //  send mail with defined transport object
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            return console.log(error);
+                        }
+                    });
+                    res.redirect('/user/details');
+                })
+
+
+            });
 
         }
     },
@@ -135,38 +136,38 @@ module.exports = {
     questionView: (req, res) => {
 
 
-
-        if(validateArticle(req)){
+        if (validateArticle(req)) {
             res.redirect('/');
-        }
+        } else {
 
-        Question.find({}).sort({date: -1}).then(firstSort => {
+            Question.find({}).sort({date: -1}).then(firstSort => {
 
-            firstSort.sort(function (a, b) {
+                firstSort.sort(function (a, b) {
 
-                if (a.answered > b.answered) {
-                    return 1;
-                } else {
-                    return -1;
-                }
+                    if (a.answered > b.answered) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
 
-            });
+                });
 
-            firstSort.map(a => {
+                firstSort.map(a => {
 
-                User.findOne({_id: a.answeredBy}).then(user => {
+                    User.findOne({_id: a.answeredBy}).then(user => {
 
-                    a.answeredBy = user.fullName;
+                        a.patok = user.fullName;
 
+                    })
+
+
+                });
+
+                res.render('functionality/questionView', {
+                    questions: firstSort
                 })
 
-
-            });
-
-            res.render('functionality/questionView', {
-                questions: firstSort
             })
-
-        })
+        }
     }
 };

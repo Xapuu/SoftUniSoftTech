@@ -23,15 +23,19 @@ const e_invoiceController = require('./../controllers/e-invoice');
 const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
+const solutionController = require('./../controllers/solution')
+
 const solutionController = require('./../controllers/solution');
 
 var recaptcha = require('express-recaptcha');
 
 recaptcha.init('6Ld-rB0UAAAAANyXZKFiGbBc1J7NM_NQg4Y93xeF', '6Ld-rB0UAAAAANoVTHTNIkiX9p1H7HhqBlhQvWnE');
 
+
 module.exports = (app) => {
 
     app.get('/', homeController.index);
+
 
     app.get('/solution/solution',solutionController.solution);
 
@@ -63,6 +67,7 @@ module.exports = (app) => {
     // GitHEAD
     app.get('/user/register', recaptcha.middleware.render, userController.registerGet);
     app.post('/user/register', recaptcha.middleware.verify, userController.registerPost);
+
 
     app.get('/services/lettersProduction',lettersProductionController.lettersProduction);
 

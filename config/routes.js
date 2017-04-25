@@ -23,9 +23,19 @@ const e_invoiceController = require('./../controllers/e-invoice');
 const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
-const solutionController = require('./../controllers/solution')
-
 const solutionController = require('./../controllers/solution');
+const clientsController = require('./../controllers/clients');
+const meilLettersController = require('./../controllers/meilLetters');
+const productsController = require('./../controllers/products');
+const paperEnvelopeController = require('./../controllers/paperEnvelope');
+const paperBlanksController = require('./../controllers/paperBlanks');
+const booksAndDeepsController = require('./../controllers/booksAndDeeps');
+const booksController = require('./../controllers/books');
+const deepsController = require('./../controllers/deeps');
+const pinController = require('./../controllers/pin');
+const bankCardController = require('./../controllers/bankCard');
+const loyalClientsController = require('./../controllers/loyalClients');
+const cardsController = require('./../controllers/cards');
 
 var recaptcha = require('express-recaptcha');
 
@@ -36,6 +46,29 @@ module.exports = (app) => {
 
     app.get('/', homeController.index);
 
+    app.get('/products/cards',cardsController.cards);
+
+    app.get('/products/loyalClients',loyalClientsController.loyalClients);
+
+    app.get('/products/bankCard',bankCardController.bankCard);
+
+    app.get('/products/pin',pinController.pin);
+
+    app.get('/products/books',booksController.books);
+
+    app.get('/products/deeps',deepsController.deeps);
+
+    app.get('/products/booksAndDeeps',booksAndDeepsController.booksAndDeeps);
+
+    app.get('/products/paperBlanks',paperBlanksController.paperBlanks);
+
+    app.get('/products/products',productsController.products);
+
+    app.get('/products/paperEnvelope',paperEnvelopeController.paperEnvelope);
+
+    app.get('/products/meilLetters/',meilLettersController.meilLetters);
+
+    app.get('/aboutUs/clients',clientsController.clients);
 
     app.get('/solution/solution',solutionController.solution);
 
@@ -54,6 +87,7 @@ module.exports = (app) => {
     app.get('/services/scaning',scaningController.scaning);
 
     app.get('/services/formulqrs',formulqrsController.formulqrs);
+
     app.get('/services/elArhives',elArhivesController.elArhives);
 
     app.get('/services/digitalMarceting',digitalMarcetingController.digitalMarceting);
@@ -64,7 +98,7 @@ module.exports = (app) => {
 
     app.get('/services/cardsMailing',cardsMailingController.cardsMailing);
 
-    // GitHEAD
+
     app.get('/user/register', recaptcha.middleware.render, userController.registerGet);
     app.post('/user/register', recaptcha.middleware.verify, userController.registerPost);
 

@@ -24,6 +24,8 @@ const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
 const solutionController = require('./../controllers/solution');
+const statsController = require('./../controllers/stats');
+const solutionController = require('./../controllers/solution');
 const clientsController = require('./../controllers/clients');
 const meilLettersController = require('./../controllers/meilLetters');
 const productsController = require('./../controllers/products');
@@ -147,6 +149,9 @@ module.exports = (app) => {
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);
 
     app.get('/functionality/questions', userFunctionalityController.questionView);
+
+    app.get('/stats', statsController.basicView);
+    app.get('/questionsAnswers', statsController.questionsAnswersView);
 
 };
 

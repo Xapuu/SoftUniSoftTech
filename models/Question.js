@@ -9,7 +9,7 @@ let questionSchema = mongoose.Schema({
     authorMail:{type:String, required:true},
     subject:{type:String, required:true},
     content:{type:String, required:true},
-    answeredBy:{type:ObjectId, required:true},
+    answeredBy:{type:ObjectId},
     answer:{type:String, default:""},
     dateAsked:{type:Date, default:Date.now()},
     answered: {type:Boolean, default:false}

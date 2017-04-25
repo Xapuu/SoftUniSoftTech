@@ -1,7 +1,35 @@
 const User = require('mongoose').model('User');
 const encryption = require('./../utilities/encryption');
+const UserLog = require('mongoose').model('UserLog');
 
+function loginWatcher(req) {
+    let myDate= new Date();
+    let objMaterial = myDate.getDate()+"/"+myDate.getMonth()+"/"+myDate.getFullYear();
+    UserLog.findOne({dateStamp:objMaterial}).then(logDate =>{
 
+        if(logDate){
+            if(logDate.log.indexOf(req.user._id)<0){
+            logDate.log.push(req.user._id);
+            logDate.save();
+
+            }
+        }
+        else {
+
+            let userLogObject = {
+
+                dateStamp:objMaterial,
+
+            };
+
+            UserLog.create((userLogObject)).then(newLogDate =>{
+
+                newLogDate.log.push(req.user._id);
+                newLogDate.save();
+            });
+        }
+})
+}
 
 module.exports = {
     registerGet: (req, res) => {
@@ -38,6 +66,8 @@ module.exports = {
                     salt: salt
                 };
 
+
+
                 User.create(userObject).then(user => {
                     req.logIn(user, (err) => {
                         if (err) {
@@ -45,6 +75,9 @@ module.exports = {
                             res.render('user/register', registerArgs);
                             return;
                         }
+
+
+                        loginWatcher(req);
 
                         res.redirect('/')
                     })
@@ -74,6 +107,7 @@ module.exports = {
                     return;
                 }
 
+                loginWatcher(req);
                 res.redirect('/');
             })
         })

@@ -34,7 +34,55 @@ module.exports = {
 
 
 
-        })}};
+        })},
+    userActivityView:(req,res)=>{
+
+        let myObj=[];
+         UserLog.find({}).sort({date:-1}).limit(30).then(sortedData =>{
+
+             sortedData.map(data=>{
+                 let newObj={
+                     date:data.dateStamp,
+                     logs:data.log===undefined?0:data.log.length
+                 };
+
+                 myObj.push(newObj);
+             });
+
+             let output = JSON.stringify((myObj));
+
+
+             res.render("stats/userActivity",{output});
+
+         })
+
+
+    },
+    newsActivityView:(req,res)=>{
+
+        let myObj=[];
+        UserLog.find({}).sort({date:-1}).limit(30).then(sortedData =>{
+
+            sortedData.map(data=>{
+                let newObj={
+                    date:data.dateStamp,
+                    create:data.createAt===undefined?0:data.createAt.length,
+                    delete:data.deleteAt===undefined?0:data.deleteAt.length
+                };
+
+                myObj.push(newObj);
+            });
+
+            let output = JSON.stringify((myObj));
+
+
+            res.render("stats/newsCreated",{output});
+
+        })
+    }
+
+
+};
 
 
 

@@ -151,6 +151,8 @@ module.exports = (app) => {
 
     app.get('/stats', statsController.basicView);
     app.get('/questionsAnswers', statsController.questionsAnswersView);
+    app.get('/userActivity', statsController.userActivityView);
+    app.get('/newsCreated', statsController.newsActivityView);
 
 };
 

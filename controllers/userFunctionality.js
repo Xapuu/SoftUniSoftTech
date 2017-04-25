@@ -128,7 +128,7 @@ module.exports = {
 
 
                     let myDate = new Date();
-                    let objMaterial = myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getYear();
+                    let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getYear();
                     UserLog.findOne({dateStamp: objMaterial}).then(answerDate => {
 
                         if (answerDate) {

@@ -47,7 +47,7 @@ module.exports = {
         }
 
         let myDate = new Date();
-        let objMaterial = myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getYear();
+        let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getFullYear();
         UserLog.findOne({dateStamp: objMaterial}).then(createDate => {
 
             if (createDate) {
@@ -182,6 +182,27 @@ module.exports = {
         else {
             let id = req.params.id;
 
+            let myDate = new Date();
+            let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getFullYear();
+            UserLog.findOne({dateStamp: objMaterial}).then(createDate => {
+                if (createDate) {
+                    createDate.deleteAt.push(req.user._id);
+                    createDate.save();
+
+                }
+                else {
+                    //Should throw Err
+                    let userLogObject = {
+                        dateStamp: objMaterial,
+                    };
+                    UserLog.create((userLogObject)).then(newLogDate => {
+                        newLogDate.deleteAt.push(req.user._id);
+                        newLogDate.save();
+                    });
+                }
+            });
+
+
 
             Article.findById(id).then(article => {
                 res.render('newsCreation/delete', article)
@@ -202,6 +223,7 @@ module.exports = {
 
 
         let user = req.user;
+        console.log(user);
         let adminAuthor = user.articles.indexOf(id) > -1 || user.admin;
 
 
@@ -211,16 +233,16 @@ module.exports = {
             Article.findOne({_id: id}).then(article => {
                 let authorId = article.author;
 
-                User.findOne({_id: authorId}).then(user => {
+                User.findOne({_id: authorId}).then(authorUser => {
 
                     Article.remove({_id: id}).then(leftArticles => {
 
 
                         let deleter = {
-                          title:article.title,
+                            title:article.title,
                             content:article.content,
                             author: authorId,
-                            deleter: id,
+                            deleter: user._id,
                             dateOfCreation:article.date
                         };
 
@@ -228,12 +250,13 @@ module.exports = {
                             x.save;
                         });
 
+                        console.log(deleter);
 
 
 
-                        let index = user.articles.indexOf(id);
-                        user.articles.splice(index, 1);
-                        user.save();
+                        let index = authorUser.articles.indexOf(id);
+                        authorUser.articles.splice(index, 1);
+                        authorUser.save();
                         res.redirect('/news/newsBrowser');
 
                     })

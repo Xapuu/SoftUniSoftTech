@@ -4,7 +4,7 @@ const UserLog = require('mongoose').model('UserLog');
 
 function loginWatcher(req) {
     let myDate= new Date();
-    let objMaterial = myDate.getDate()+"/"+myDate.getMonth()+"/"+myDate.getFullYear();
+    let objMaterial = myDate.getDate()+"/"+(myDate.getMonth()+1)+"/"+myDate.getFullYear();
     UserLog.findOne({dateStamp:objMaterial}).then(logDate =>{
 
         if(logDate){

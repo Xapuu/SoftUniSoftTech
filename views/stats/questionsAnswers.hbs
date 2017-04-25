@@ -1,6 +1,6 @@
 
 <div clas="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h1>Basic</h1>
         <ul>
             <li>News</li>
@@ -10,18 +10,15 @@
 
     </div>
 
-    <div class="col-sm-8">
+    <div class="col-sm-9">
 
 
-           {{#each sortedData}}
-               <p>Answered Questions {{this.answeredCount}}</p>
-               <p>Asked Questions {{this.asked}}</p>
-           {{/each}}
 
-
+        <canvas id="myChart"></canvas>
 
 
     </div>
+    <div id="data" class="data" >{{output}}</div>
 </div>
-
+<script>charVisual()</script>
 <div class="row"></div>

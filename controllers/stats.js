@@ -13,26 +13,28 @@ module.exports = {
     questionsAnswersView:(req,res) =>{
 
 
+        let myObj=[];
+
         UserLog.find({}).sort({date:-1}).limit(30).then(sortedData => {
 
-            sortedData.map(x => {
+            sortedData.map(data=>{
+            let newObj={
+                date:data.dateStamp,
+                questions:data.asked,
+                answers:data.answer===undefined?0:data.answer.length
+            };
 
-                if (x.answered) {
-                    x.answeredCount = x.answered.length();
-                    sortedData.totalAnswered += x.answered.length();
-                } else {
-                    x.answeredCount = 0;
-                    sortedData.totalAnswered+=0;
-                }
+             myObj.push(newObj);
+
             });
+           let output =JSON.stringify(myObj);
 
-                console.log(sortedData);
             res.render("stats/questionsAnswers",
-                {sortedData});
+                {output});
 
 
 
-        })}}
+        })}};
 
 
 

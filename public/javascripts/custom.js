@@ -47,3 +47,36 @@
         //return   window.location = "/news/multyNewsBrowser"+page;
 
   }
+
+
+  function charVisual() {
+
+
+
+      let another = document.getElementById('data').innerHTML;
+      let data = JSON.parse(another);
+     console.log(data);
+      let ctx = document.getElementById('myChart').getContext('2d');
+      let myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: [],//date
+              datasets: [{
+                  label: 'answered',
+                  data: [],
+                  backgroundColor: "rgba(153,255,51,0.4)"
+              }, {
+                  label: 'unanswered',
+                  data: [],
+                  backgroundColor: "rgba(255,153,0,0.4)"
+              }]
+          }
+      });
+
+      for(let i=0; i<data.length;i++){
+          myChart.data.labels.push(data[i].date);
+          myChart.data.datasets[0].data.push(data[i].answers);
+          myChart.data.datasets[1].data.push(data[i].questions);
+      }
+      //document.getElementById('data').classList.add('hidden');
+  };

@@ -23,7 +23,6 @@ const e_invoiceController = require('./../controllers/e-invoice');
 const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
-const solutionController = require('./../controllers/solution');
 const statsController = require('./../controllers/stats');
 const solutionController = require('./../controllers/solution');
 const clientsController = require('./../controllers/clients');

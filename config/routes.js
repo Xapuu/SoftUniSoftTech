@@ -9,6 +9,7 @@ const servicesController = require('./../controllers/services');
 const mailingController = require('./../controllers/meiling');
 const lettersProductionController = require('./../controllers/lettersProduction');
 const digitalPrintController = require('./../controllers/digitalPrint');
+
 const cardsMailingController = require('./../controllers/cardsMailing');
 const transPrintController = require('./../controllers/transPrint');
 const booksPrintingController = require('./../controllers/booksPrinting');
@@ -22,8 +23,8 @@ const e_invoiceController = require('./../controllers/e-invoice');
 const smsController = require('./../controllers/sms');
 const emailController = require('./../controllers/email');
 const elBooksController = require('./../controllers/elBooks');
-const solutionController = require('./../controllers/solution')
-
+const solutionController = require('./../controllers/solution');
+const statsController = require('./../controllers/stats');
 
 var recaptcha = require('express-recaptcha');
 
@@ -110,6 +111,9 @@ module.exports = (app) => {
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);
 
     app.get('/functionality/questions', userFunctionalityController.questionView);
+
+    app.get('/stats', statsController.basicView);
+    app.get('/questionsAnswers', statsController.questionsAnswersView);
 
 };
 

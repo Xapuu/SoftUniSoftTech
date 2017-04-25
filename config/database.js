@@ -17,6 +17,8 @@ module.exports = (config) => {
     require('./../models/User');
     require('./../models/Article');
     require('./../models/Question');
+    require('./../models/DeletionArchive');
+    require('./../models/UserLog');
 };
 
 

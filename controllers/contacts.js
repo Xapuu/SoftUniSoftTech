@@ -4,6 +4,7 @@
 
 const nodemailer = require('nodemailer');
 const Question = require('mongoose').model('Question');
+const UserLog = require('mongoose').model('UserLog');
 
 module.exports = {
 
@@ -47,7 +48,31 @@ module.exports = {
         Question.create(questionObj);
 
 
+        let myDate= new Date();
+        let objMaterial = myDate.getDate()+"/"+myDate.getMonth()+"/"+myDate.getFullYear();
+        UserLog.findOne({dateStamp:objMaterial}).then(logDate =>{
 
+            if(logDate){
+
+                    logDate.asked+=1;
+                    logDate.save();
+
+            }
+            else {
+
+                let userLogObject = {
+
+                    dateStamp:objMaterial,
+
+                };
+
+                UserLog.create((userLogObject)).then(newLogDate =>{
+
+                    newLogDate.asked+=1;
+                    newLogDate.save();
+                });
+            }
+        })
 
 
 

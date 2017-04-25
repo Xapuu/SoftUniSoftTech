@@ -3,6 +3,9 @@
  */
 const Article = require('mongoose').model('Article');
 const User = require('mongoose').model('User');
+const UserLog = require('mongoose').model('UserLog');
+const DeletionArchive = require('mongoose').model('DeletionArchive');
+
 
 function authenticaation(req) {
 
@@ -43,14 +46,42 @@ module.exports = {
             return;
         }
 
+        let myDate = new Date();
+        let objMaterial = myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getYear();
+        UserLog.findOne({dateStamp: objMaterial}).then(createDate => {
+
+            if (createDate) {
+
+                createDate.createAt.push(req.user._id);
+                createDate.save();
+
+            }
+            else {
+
+                //Should throw Err
+
+                let userLogObject = {
+
+                    dateStamp: objMaterial,
+
+                };
+
+                UserLog.create((userLogObject)).then(newLogDate => {
+
+                    newLogDate.createAt.push(req.user._id);
+                    newLogDate.save();
+                });
+            }
+        });
+
         let image = req.files.image;
 
-        if(image){
+        if (image) {
             let filename = image.name;
 
 
-            image.mv(`./public/imagesFromNews/${filename}`, err=> {
-                if(err) {
+            image.mv(`./public/imagesFromNews/${filename}`, err => {
+                if (err) {
                     console.log(err.message);
                 }
             });
@@ -183,6 +214,22 @@ module.exports = {
                 User.findOne({_id: authorId}).then(user => {
 
                     Article.remove({_id: id}).then(leftArticles => {
+
+
+                        let deleter = {
+                          title:article.title,
+                            content:article.content,
+                            author: authorId,
+                            deleter: id,
+                            dateOfCreation:article.date
+                        };
+
+                        DeletionArchive.create(deleter).then(x=>{
+                            x.save;
+                        });
+
+
+
 
                         let index = user.articles.indexOf(id);
                         user.articles.splice(index, 1);

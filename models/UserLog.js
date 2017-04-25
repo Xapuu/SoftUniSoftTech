@@ -1,25 +1,19 @@
 /**
- * Created by Hary on 21.4.2017 г..
+ * Created by Hary on 24.4.2017 г..
  */
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-let userActivitySchema = mongoose.Schema(
-    {
+let userLogSchema = mongoose.Schema({
+   dateStamp: {type:String, default:""},
+    createAt:{type:[ObjectId], default:[]},
+    deleteAt:{type:[ObjectId], default:[]},
+    log:{type:[ObjectId], default:[]},
+    asked:{type:Number, default:0 },
+    answer:{type:[ObjectId], default:[]},
+    sortParam:{type:Date,default:Date.now()}
 
-    }
-)
+});
 
-
-
-
-let userSchema = mongoose.Schema(
-    {
-        email: {type: String, required: true, unique: true},
-        passwordHash: {type: String, required: true},
-        fullName: {type: String, required: true},
-        articles: { type:[ObjectId], default:[]},
-        admin: {type:Boolean, default:false},
-        salt: {type: String, required: true}
-    }
-);
+const UserLog = mongoose.model('UserLog',userLogSchema);
+module.exports = UserLog;

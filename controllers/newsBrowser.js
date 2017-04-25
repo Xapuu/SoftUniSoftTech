@@ -9,7 +9,7 @@ module.exports = {
 
         Article.find({}).sort({date:-1}).limit(5).populate('author').then(articles => {
 
-            mainArticle = articles[0];
+            let mainArticle = articles[0];
 
 
             for (let index = 1; index<articles.length;index++){
@@ -37,6 +37,8 @@ module.exports = {
 
       Article.find({}).sort({date:-1}).then(articles =>{
 
+          let mainArticle = articles.shift();
+
           let currentPage = parseInt(req.params.page);
 
           console.log(req);
@@ -50,11 +52,15 @@ module.exports = {
 
               let kurec = articles.slice(currentPageValue-10 ,currentPageValue);
 
+              kurec.map(kurec=>{
+                 kurec.content= kurec.content.substring(1,200);
+              })
+
               let pages = {firstPage:1,prevPage:currentPage-1 < 1?currentPage:currentPage-1,currentPage:currentPage>lastPage?lastPage:currentPage<1?1:currentPage
                   ,nextPage:currentPage+1>lastPage?lastPage:currentPage+1,lastPage:lastPage}
 
                   if(kurec){
-                  res.render('news/multyNewsBrowser',{kurec, pages});
+                  res.render('news/multyNewsBrowser',{kurec, pages , mainArticle});
                   }else{
                       res.render('news/multyNewsBrowser');
                   }

@@ -2,6 +2,7 @@ const Article = require('mongoose').model('Article');
 const Question = require('mongoose').model('Question');
 const User = require('mongoose').model('User');
 const nodemailer = require('nodemailer');
+const UserLog = require('mongoose').model('UserLog');
 
 function validateArticle(req) {
 
@@ -122,6 +123,34 @@ module.exports = {
                     transporter.sendMail(mailOptions, (error, info) => {
                         if (error) {
                             return console.log(error);
+                        }
+                    });
+
+
+                    let myDate = new Date();
+                    let objMaterial = myDate.getDate() + "/" + myDate.getMonth() + "/" + myDate.getYear();
+                    UserLog.findOne({dateStamp: objMaterial}).then(answerDate => {
+
+                        if (answerDate) {
+                            answerDate.answer.push(req.user._id);
+                            answerDate.save();
+
+                        }
+                        else {
+
+                            //Should throw Err
+
+                            let userLogObject = {
+
+                                dateStamp: objMaterial,
+
+                            };
+
+                            UserLog.create((userLogObject)).then(newLogDate => {
+
+                                newLogDate.answer.push(req.user._id);
+                                newLogDate.save();
+                            });
                         }
                     });
                     res.redirect('/user/details');

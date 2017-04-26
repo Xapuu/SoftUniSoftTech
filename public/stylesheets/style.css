@@ -394,7 +394,12 @@ body, html {
   padding-top: 12px;
 }
 
+.mask{
+    border-bottom-color: #0b0b0b;
+    border-bottom-style: solid;
+    padding: 100%;
 
+}
 
 /*---------------------------------------
    Gallery section              
@@ -554,9 +559,9 @@ body, html {
 }
 
 .blog-post-des .btn:hover {
-  background: #bfba55;
+  background: #A9D203;
   border-color: transparent;
-  color: #ffffff;
+  color: yellow;
 }
 
 .blog-author {

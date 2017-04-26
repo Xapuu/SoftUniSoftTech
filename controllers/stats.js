@@ -107,7 +107,13 @@ module.exports = {
     },
     byDate:(req,res)=>{
 
-        console.log(req);
+        let id = req.params.id;
+        console.log(id);
+        UserLog.findOne({_id:id}).then(x=>{
+            console.log(x)
+        });
+
+        res.redirect('/');
     }
 
 

@@ -286,9 +286,9 @@ a:hover, a:active, a:focus {
     text-align: center;
 }
 
-body, html {
-  height: 100%;
-}
+/*body, html {*/
+  /*min-height: 100%;*/
+/*}*/
 #Container {
   width: 100%;
   height: 100%;
@@ -902,4 +902,28 @@ video {
 
 #dropdown-list{
   list-style-type: none !important;
+}
+
+/* Make content expand to fill emty space*/
+/* body {
+  display:flex;
+  flex-direction: column;
+}
+body > .row {
+  flex: 1;
+}
+*/
+html {
+  height: 100%;
+}
+body {
+  min-height:100%;
+  position: relative;
+  padding-bottom: 230px;
+}
+body > footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

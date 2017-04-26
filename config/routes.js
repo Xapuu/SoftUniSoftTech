@@ -154,7 +154,7 @@ module.exports = (app) => {
     app.get('/stats/userActivity', statsController.userActivityView);
     app.get('/stats/newsCreated', statsController.newsActivityView);
     app.get('/stats/logBrowser', statsController.logBrowserView);
-    app.get('stats/byDate/:id', statsController.byDate);
+    app.get('/stats/byDate/:id', statsController.byDate);
 
 };
 

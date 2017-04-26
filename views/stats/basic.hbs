@@ -1,20 +1,29 @@
+<div class="container">
 
-<div clas="row">
-    <div class="col-sm-4">
-        <h1>Basic</h1>
-        <ul>
-            <li><a href="/newsCreated">News</a></li>
-            <li><a href="/questionsAnswers">Questions/Answers</a></li>
-            <li><a href="/userActivity">UserActivity</a> </li>
-        </ul>
+    <div clas="row">
+        <div class="col-sm-4">
+            <h1>Basic</h1>
+            <ul>
+                <li><a href="/stats/newsCreated">News</a></li>
+                <li><a href="/stats/questionsAnswers">Questions/Answers</a></li>
+                <li><a href="/stats/userActivity">UserActivity</a></li>
+            </ul>
+            {{#if user.admin}}
+                <h1>Admin</h1>
+                <!--add Admin functionality-->
+                <ul>
+                    <li><a href="/stats/logBrowser">Log</a></li>
+                </ul>
+            {{/if}}
 
+        </div>
+
+        <div class="col-sm-8">
+            <h1>Test</h1>
+            <h1>Test</h1>
+
+        </div>
     </div>
 
-    <div class="col-sm-8">
-        <h1>Test</h1>
-        <h1>Test</h1>
-
-    </div>
+    <div class="row"></div>
 </div>
-
-<div class="row"></div>

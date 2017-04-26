@@ -63,7 +63,6 @@ module.exports = {
         else {
 
             let questionId = req.params.id;
-            console.log(questionId);
             Question.findOne({_id: questionId}).then(question => {
 
 
@@ -85,7 +84,11 @@ module.exports = {
 
 
             let questionId = req.params.id;
-            let msg = req.body.message;
+
+            console.log(req.body);
+
+            let msg = req.body['message'];
+            console.log(msg);
 
             let userParams = req.user;
             let userId = userParams.id;
@@ -128,7 +131,7 @@ module.exports = {
 
 
                     let myDate = new Date();
-                    let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getYear();
+                    let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getFullYear();
                     UserLog.findOne({dateStamp: objMaterial}).then(answerDate => {
 
                         if (answerDate) {
@@ -153,7 +156,7 @@ module.exports = {
                             });
                         }
                     });
-                    res.redirect('/user/details');
+                    res.redirect('/');
                 })
 
 
@@ -183,13 +186,11 @@ module.exports = {
 
                 firstSort.map(a => {
 
+
                     User.findOne({_id: a.answeredBy}).then(user => {
 
                         a.patok = user.fullName;
-
                     })
-
-
                 });
 
                 res.render('functionality/questionView', {

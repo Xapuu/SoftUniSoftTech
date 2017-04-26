@@ -76,7 +76,7 @@ function charVisual() {
     //document.getElementById('data').classList.add('hidden');
 };
 
-function charActivityVisual() {
+ function charActivityVisual() {
 
     let another = document.getElementById('data2').innerHTML;
     let data = JSON.parse(another);
@@ -85,6 +85,7 @@ function charActivityVisual() {
     let ctx = document.getElementById('myActivityChart').getContext('2d');
     let myChart = new Chart(ctx, {
         type: 'line',
+        responsive:true,
         data: {
             labels: [],
             datasets: [{
@@ -108,11 +109,12 @@ function charNewsVisual() {
 
     let another = document.getElementById('data3').innerHTML;
     let data = JSON.parse(another);
-    console.log(data)
+    console.log(data);
 
 
     let ctx = document.getElementById('myNewsChart').getContext('2d');
     let myChart = new Chart(ctx, {
+
         type: 'line',
         data: {
             labels: [],

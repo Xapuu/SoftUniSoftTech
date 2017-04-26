@@ -1,24 +1,33 @@
 
-<div clas="row">
-    <div class="col-sm-3">
-        <h1>Basic</h1>
-        <ul>
-            <li><a href="/newsCreated">News</a></li>
-            <li><a href="/questionsAnswers">Questions/Answers</a></li>
-            <li><a href="/userActivity">UserActivity</a> </li>
-        </ul>
 
+    <div clas="row">
+        <div class="col-sm-3">
+            <h1>Basic</h1>
+            <ul>
+                <li><a href="/stats/newsCreated">News</a></li>
+                <li><a href="/stats/questionsAnswers">Questions/Answers</a></li>
+                <li><a href="/stats/userActivity">UserActivity</a> </li>
+            </ul>
+            {{#if user.admin}}
+                <h1>Admin</h1>
+                <!--add Admin functionality-->
+                <ul>
+                    <li><a href="/stats/logBrowser">Log</a></li>
+                </ul>
+            {{/if}}
+
+
+        </div>
+
+        <div class="col-sm-9">
+
+
+
+            <canvas id="myChart"></canvas>
+
+
+        </div>
+        <div id="data" class="data" style="display: none" >{{output}}</div>
     </div>
-
-    <div class="col-sm-9">
-
-
-
-        <canvas id="myChart"></canvas>
-
-
-    </div>
-    <div id="data" class="data" style="display: none" >{{output}}</div>
-</div>
-<script>charVisual()</script>
-<div class="row"></div>
+    <script>charVisual()</script>
+    <div class="row"></div>

@@ -149,10 +149,12 @@ module.exports = (app) => {
 
     app.get('/functionality/questions', userFunctionalityController.questionView);
 
-    app.get('/stats', statsController.basicView);
-    app.get('/questionsAnswers', statsController.questionsAnswersView);
-    app.get('/userActivity', statsController.userActivityView);
-    app.get('/newsCreated', statsController.newsActivityView);
+    app.get('/stats/stats', statsController.basicView);
+    app.get('/stats/questionsAnswers', statsController.questionsAnswersView);
+    app.get('/stats/userActivity', statsController.userActivityView);
+    app.get('/stats/newsCreated', statsController.newsActivityView);
+    app.get('/stats/logBrowser', statsController.logBrowserView);
+    app.get('stats/byDate/:id', statsController.byDate);
 
 };
 

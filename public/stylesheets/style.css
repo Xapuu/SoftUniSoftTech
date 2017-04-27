@@ -559,7 +559,7 @@ a:hover, a:active, a:focus {
 .blog-post-des .btn:hover {
   background: #A9D203;
   border-color: transparent;
-  color: ye;
+  color: yellow;
 }
 
 .blog-author {
@@ -691,10 +691,17 @@ footer{
   background: #000;
    position: relative;
     color: #ffffff;
-    padding: 80px 0px;
+    padding: 10px 0px;
 
 
 
+
+}
+footer p{
+  color: #999;
+  margin: -1%;
+}
+footer a {
 
 }
 

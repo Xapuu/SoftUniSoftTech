@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="/stylesheets/magnific-popup.css">
     <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
-    <script type="text/javascript" src="./../javascripts/chart.js"></script><script src="./javascripts/jquery-1.10.2.js"></script>
-    <script src="./../javascripts/bootstrap.js"></script>
-    <script src="./../javascripts/jquery.js"></script>
-    <script src="./../javascripts/bootstrap.min.js"></script>
-    <script src="./../javascripts/particles.min.js"></script>
-    <script src="./../javascripts/app.js"></script>
-    <script src="./../javascripts/jquery.parallax.js"></script>
-    <script src="./../javascripts/smoothscroll.js"></script>
+    <script type="text/javascript" src="./../javascripts/chart.js"></script>
+    <script src="/javascripts/jquery-1.10.2.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <script src="/javascripts/particles.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/jquery.parallax.js"></script>
+    <script src="/javascripts/smoothscroll.js"></script>
     <script type="text/javascript" src="./../javascripts/custom.js"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
@@ -47,7 +48,7 @@
                         <li><a href="/products/products">Продукти</a></li>
                         <li><a href="/aboutUs/clients">За нас</a></li>
                         <li><a href="/contacts/contacts">Контакти</a></li>
-                            <li>
+                        <li>
                             <div class="dropdown">
                                 <button class="dropbtn">
                                     <a href="/user/details/{{user._id}}">Здравейте! ({{user.fullName}})</a>
@@ -55,13 +56,18 @@
                                 <div class="dropdown-content">
                                     <ul id="dropdown-list">
                                         <li><a href="/newsCreation/create">Качи новина</a></li>
+<<<<<<< HEAD
                                         <li><a href="/stats/stats">Статус</a> </li>
                                         <li><a href="/news/newsBrowser">Виж всички новини</a></li>
+=======
+                                        <li><a href="/stats/stats">Статус</a></li>
+                                        <li><a href="/functionality/questions">Виж всички новини</a></li>
+>>>>>>> a1d8b0e42bde60b07eba24ddcb7f46b8e7de5a39
                                         <li><a href="/user/logout">Изход</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            </li>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -105,8 +111,39 @@
 
 
 <Footer>
-    <div id="footerPage" class="container modal-footer">
-        <p>&copy; 2016 - Software University Foundation</p>
+    <div class="col-md-offset-2  col-md-16 col-sm-12">
+
+        <div class="col-md-2">
+            <h6>Продукти</h6>
+            <a href="/products/meilLetters"><p class="small">Хартиени бланки и пликове</p></a><a
+                href="/products/booksAndDeeps"><p class="small">Книги и дипляни</p></a>
+            <a href="/products/pin"><p class="small">ПИН пликове</p></a>
+            <a href="/products/bankCard"><p class="small">Пластмасови карти</p></a>
+        </div>
+
+        <div class="col-md-2">
+            <h6>Услуги</h6>
+            <a href="/services/meiling"><p class="small">Мейлинг услуги</p></a>
+            <a href="/services/digitalPrint"><p class="small">Дигитален печат</p></a>
+            <a href="/services/elArhives"><p class="small">Електронни архиви</p></a>
+            <a href="/services/elCommunications"><p class="small">Електронни комуникации</p></a>
+            <a href="/services/elBooks"><p class="small">Електронни книги</p></a>
+        </div>
+        <div class="col-md-2">
+            <h6>Контакти</h6>
+            <p class="small">1839 София бул. <br> Ботевградско Шосе 272</p>
+            <p class="small">Дигитализация. Електронни архиви. <br> Физическо съхранение на документи: <br> Тел.: 02 960
+                95 14</p>
+        </div>
+        <div class="col-md-1">
+            <h6>Телефон и факс</h6>
+            <p class="small">
+                Тел.: 02 960 95 11 <br>
+                02 960 95 12 <br>
+                Факс: 02 960 95 29 <br>
+                E-mail: office@directservices.bg
+            </p>
+        </div>
     </div>
 </Footer>
 

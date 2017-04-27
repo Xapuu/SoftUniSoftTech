@@ -56,7 +56,7 @@ module.exports = {
                         baseArticle = baseArticle + " ".repeat(1000 - baseArticle.length);
                     }
 
-                    DeletionArchive.find({deleter: userId}).then(deletions => {
+                    DeletionArchive.find({deleter: userId}).sort({dateOfDeletion:-1}).limit(6).then(deletions => {
 
 
                         Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id

@@ -3,10 +3,8 @@
 
     {{#if mainArticle}}
 
-        <div class="col-md-12">
+        <div id="kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID" class="col-md-12">
             <article>
-
-
                 <div class="article-text">
                     <h2>{{mainArticle.title}}</h2>
                     <div>{{mainArticle.content}}
@@ -51,7 +49,7 @@
 
 
         {{#each articles}}
-            <div class="col-md-12">
+            <div id="kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID" class="col-md-12">
                 <article>
                     <div class="article-text">
                         <h2>{{this.title}}</h2>
@@ -85,8 +83,9 @@
 
     <div id="moreNews">
         {{#if articles}}
-
+        <div class="blog-post-des">
             <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser/1">Вижте повече</a></p>
+            </div>
         {{/if}}
     </div>
 </div>

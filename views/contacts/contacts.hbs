@@ -1,25 +1,28 @@
-<div id="flexMeUp" class="row">
 
+
+<br>
+
+<div id="flexMeUp" class="row">
     <div class="col-md-offset-1 col-md-10 col-sm-12">
         <h2 id="myContact" >Моля свържете се с нас</h2>
-
         <form action="" method="post">
             <div class="col-md-4 col-sm-4">
-                <input name="name" type="text" class="form-control" id="name" placeholder="Име" required>
+                <input maxlength="50" minlength="3" name="name" type="text" class="form-control" id="name" placeholder="Име" required>
             </div>
             <div class="col-md-4 col-sm-4">
-                <input name="email" type="email" class="form-control" id="email" placeholder="Имейл адрес" required>
+                <input pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" name="email" type="email" class="form-control" id="email" placeholder="Имейл адрес" required>
             </div>
             <div class="col-md-4 col-sm-4">
-                <input name="subject" type="text" class="form-control" id="subject" placeholder="Тема" required>
+                <input maxlength="30" minlength="5" name="subject" type="text" class="form-control" id="subject" placeholder="Тема" required>
             </div>
             <div id="msgBox" class="col-md-12 col-sm-12">
-                <textarea name="message" rows="5" class="form-control" id="message" placeholder="Съобщение" required></textarea>
+                <textarea maxlength="1000" minlength="10" name="message" rows="5" class="form-control" id="message" placeholder="Съобщение" required></textarea>
             </div>
             <div class="col-md-1 col-sm-1">
-                <input name="submit" type="submit" class="form-control btn-success" id="submit" value="Изпрати">
+                <input  name="submit" type="submit" class="form-control btn-success" id="submit" value="Изпрати">
             </div>
-        </form>
-    </div>
 
+        </form>
+
+    </div>
 </div>

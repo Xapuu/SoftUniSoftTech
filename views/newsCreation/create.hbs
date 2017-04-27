@@ -7,13 +7,13 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="articleTitle">Вашата новина</label>
                     <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="articleTitle" placeholder="Вашата новина" name="title" required >
+                        <input minlength="5" maxlength="50" type="text" class="form-control" id="articleTitle" placeholder="Вашата новина" name="title" required >
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="articleContent">Съдържание</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="articleContent" rows="5" placeholder="Съдържание" name="content" required></textarea>
+                        <textarea minlength="30" maxlength="3000" class="form-control" id="articleContent" rows="5" placeholder="Съдържание" name="content" required></textarea>
                     </div>
                 </div>
 

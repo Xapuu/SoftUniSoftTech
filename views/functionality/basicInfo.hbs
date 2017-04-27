@@ -1,5 +1,8 @@
 <div class="container body-content">
     <div class="row">
+        {{#if articles}}
+            <h2>Статии</h2>
+        {{/if}}
         {{#each articles}}
             <div class="col-md-6">
                 <article>
@@ -16,7 +19,7 @@
 
 
                     <div class="pull-right">
-                        <a class="btn btn-default btn-xs" style="background-color: #34A853"
+                        <a class="button"
                            href="/newsCreation/details/{{this.id}}">Прочети повече &raquo;</a>
                     </div>
 
@@ -29,16 +32,20 @@
 <div class="container body-content">
     <div class="row">
 
+        {{#if deletions}}
+            <h2>Изтрити статии</h2>
+        {{/if}}
 
         {{#each deletions}}
-            <div class="col-md-6">
+            <div class="col-md-6 articleBox">
                 <article>
                     <header>
                         <h2>{{this.title}}</h2>
-                        <h2>Created by:{{this.author}}</h2>
-                        <h2>Deleted by:{{this.deleter}}</h2>
+                        <p class="authors">Created by:{{this.creator}}</p>
+                        <p class="authors">Deleted by:{{this.deletor}}</p>
                     </header>
-                    <p>{{this.content}}</p>
+                    <p class="contentForCut">{{this.content}}</p>
+
                 </article>
             </div>
         {{/each}}
@@ -50,23 +57,20 @@
 <div class="container body-content">
     <div class="row">
         {{#if unanswered}}
-            <h1>Annswered</h1>
-
+            <h2>Отговорени въпроси</h2>
         {{/if}}
         {{#each unanswered}}
             <div class="col-md-6">
                 <article>
                     <header>
-                        <h2>Asked by: {{this.author}} mail: {{this.authorMail}}</h2>
-                        <h3>Subject: {{this.subject}}</h3>
+                        <h3>Зададен от: {{this.author}} mail: {{this.authorMail}}</h3>
+                        <h4>Тема: {{this.subject}}</h4>
                     </header>
-                    <h3>Question</h3>
+                    <h5>Въпрос</h5>
                     <p>{{this.content}}</p>
-                    <h3>Answer</h3>
+                    <h3>Отговорен от: {{this.name}}</h3>
+                    <h4>Отговор</h4>
                     <p>{{this.answer}}</p>
-                    <div class="pull-right">
-                        <a class="btn btn-default btn-xs" href="/functionality/answer/{{this.id}}">Answer Now</a>
-                    </div>
 
                 </article>
 

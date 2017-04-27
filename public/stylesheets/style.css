@@ -935,3 +935,13 @@ body > footer {
   left: 0;
   right: 0;
 }
+
+.authors {
+  font-weight: bold;
+  font-style: oblique;
+  font-size: large;
+}
+
+.articleBox {
+  min-height: 250px;
+}

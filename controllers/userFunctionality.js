@@ -42,25 +42,40 @@ module.exports = {
 
                 } else {
 
-                    for (let index = 1; index < articles.length; index++) {
+                    for (let index = 0; index < articles.length; index++) {
 
                         articles[index].content = articles[index].content.substring(0, 200) + "...";
                     }
 
-                    let baseArticle = articles[0].content;
-
-                    if (baseArticle.length > 1000) {
-                        baseArticle = baseArticle.substring(0, 1000) + "..."
-                    }
-                    else {
-                        baseArticle = baseArticle + " ".repeat(1000 - baseArticle.length);
-                    }
 
                     DeletionArchive.find({deleter: userId}).sort({dateOfDeletion:-1}).limit(6).then(deletions => {
 
+                        for(let i=0; i<deletions.length;i++){
+                            if(deletions[i].content.length>200) {
+                                deletions[i].content = deletions[i].content.substring(0, 200);
+                            }
+                                User.findOne({_id:userId}).then(a=>{
+                                    let name;
+                                    name = a;
+                                    deletions[i].deletor=name.fullName;
+                                });
+
+                            User.findOne({_id:deletions[i].author}).then(z=>{
+                                let name;
+                                name = z;
+                                deletions[i].creator=name.fullName;
+                            })
+
+                        }
 
                         Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id
-
+                            for(let i=0; i<answeredByMe.length; i++){
+                                let name;
+                                User.findOne({_id:userId}).then(a=>{
+                                   name = a;
+                                answeredByMe[i].name=name.fullName;
+                                });
+                            }
 
                             res.render('functionality/basicInfo', {
                                 articles, unanswered: answeredByMe, deletions

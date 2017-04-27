@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="inputEmail">Имейл адрес</label>
                     <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Имейл адрес" name="email" required value={{email}} >
+                        <input type="email" pattern=" /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/" class="form-control" id="inputEmail" placeholder="Имейл адрес" name="email" required value={{email}}  >
                     </div>
                 </div>
                 <div class="form-group">

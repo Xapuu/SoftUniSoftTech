@@ -68,19 +68,22 @@
 
 {{/each}}
 
+
+
+
 <div class="col-md-12">
     <div class="row text-center">
-        <a href="/news/multyNewsBrowser/{{pages.firstPage}}"><button>FirstPage</button></a>
-        <a href="/news/multyNewsBrowser/{{pages.prevPage}}"><button>PrevPage</button></a>
-        <a href="/news/multyNewsBrowser/{{pages.nextPage}}"><button>NextPage</button></a>
-        <a href="/news/multyNewsBrowser/{{pages.lastPage}}"><button>LastPage</button></a>
+        <a href="/news/multyNewsBrowser/{{pages.firstPage}}" class="btn btn-primary">First Page</a>
+        <a href="/news/multyNewsBrowser/{{pages.prevPage}}" class="btn btn-primary">Prev Page</a>
+        <a href="/news/multyNewsBrowser/{{pages.nextPage}}" class="btn btn-primary">Next Page</a>
+        <a href="/news/multyNewsBrowser/{{pages.lastPage}}" class="btn btn-primary">Last Page</a>
     </div>
 
     <div class="row text-center">
+        <br>
+        <button class=" btn btn-primary" type="submit">Go To</button></a>
         <form method="POST" action="/news/multyNewsBrowser">
-        <textarea id="goToPage" rows="1"  cols="1" name="searchedPage" id="searchedPage" placeholder="{{pages.currentPage}}"></textarea>
-        <button type="submit">Go To</button></a>
-
+        <textarea style="margin: 1%" id="goToPage" rows="1"  cols="1" name="searchedPage" id="searchedPage" placeholder="{{pages.currentPage}}"></textarea>
         </form>
     </div>
 </div>

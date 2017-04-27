@@ -16,9 +16,13 @@ module.exports = {
                 articles[index].content= articles[index].content.substring(0,200)+"...";
             }
 
+
+            console.log(articles);
                 articles.shift();
                 res.render('news/newsBrowser',{
                     articles, mainArticle}
+
+
 
                 );
 

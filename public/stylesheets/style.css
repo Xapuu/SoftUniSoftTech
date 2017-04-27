@@ -60,6 +60,7 @@ p {
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 0.2px;
+  text-align: justify;
 }
 
 .btn-success:focus {
@@ -559,7 +560,7 @@ a:hover, a:active, a:focus {
 .blog-post-des .btn:hover {
   background: #A9D203;
   border-color: transparent;
-  color: ye;
+  color: yellow;
 }
 
 .blog-author {
@@ -780,7 +781,9 @@ footer .footer-copyright {
     transform: scale(1.1);
 }
 
-
+#fullNewsParagraf{
+  padding-right: 1.5%;
+}
 
 /*---------------------------------------
    Mobile Responsive         

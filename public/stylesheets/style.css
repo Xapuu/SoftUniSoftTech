@@ -53,6 +53,22 @@ h4 {
   font-weight: normal;
   letter-spacing: 2px;
 }
+.authors {
+  font-weight: bold;
+  font-style: oblique;
+  font-size: large;
+}
+
+footer p{
+    color: #999;
+    margin: -1%;
+  }
+.articleBox {
+    min-height: 250px;
+  }
+footer a {
+
+  }
 
 p {
     color: #777;

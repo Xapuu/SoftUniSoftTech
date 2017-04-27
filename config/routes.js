@@ -142,7 +142,7 @@ module.exports = (app) => {
     app.get('/contacts/contacts', contactController.formGet);
     app.post('/contacts/contacts', contactController.formPost);
 
-    app.get('/user/details', userFunctionalityController.formGet);
+    app.get('/user/details/:id', userFunctionalityController.formGet);
 
     app.get('/functionality/answer/:id', userFunctionalityController.answerFormGet);
     app.post('/functionality/answer/:id', userFunctionalityController.answerFormPost);

@@ -15,9 +15,10 @@
                     </small>
 
 
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs" style="background-color: #34A853" href="/newsCreation/details/{{this.id}}">Прочети повече &raquo;</a>
-                        </div>
+                    <div class="pull-right">
+                        <a class="btn btn-default btn-xs" style="background-color: #34A853"
+                           href="/newsCreation/details/{{this.id}}">Прочети повече &raquo;</a>
+                    </div>
 
                 </article>
             </div>
@@ -25,22 +26,44 @@
     </div>
 </div>
 
+<div class="container body-content">
+    <div class="row">
+
+
+        {{#each deletions}}
+            <div class="col-md-6">
+                <article>
+                    <header>
+                        <h2>{{this.title}}</h2>
+                        <h2>Created by:{{this.author}}</h2>
+                        <h2>Deleted by:{{this.deleter}}</h2>
+                    </header>
+                    <p>{{this.content}}</p>
+                </article>
+            </div>
+        {{/each}}
+
+
+    </div>
+</div>
 
 <div class="container body-content">
     <div class="row">
-       {{#if unanswered}}
-           <h1>Unanswered</h1>
+        {{#if unanswered}}
+            <h1>Annswered</h1>
 
-       {{/if}}
+        {{/if}}
         {{#each unanswered}}
             <div class="col-md-6">
                 <article>
                     <header>
-                        <h2>{{this.author}} {{this.authorMail}}</h2>
-                        <h3>{{this.subject}}</h3>
+                        <h2>Asked by: {{this.author}} mail: {{this.authorMail}}</h2>
+                        <h3>Subject: {{this.subject}}</h3>
                     </header>
-
+                    <h3>Question</h3>
                     <p>{{this.content}}</p>
+                    <h3>Answer</h3>
+                    <p>{{this.answer}}</p>
                     <div class="pull-right">
                         <a class="btn btn-default btn-xs" href="/functionality/answer/{{this.id}}">Answer Now</a>
                     </div>

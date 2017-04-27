@@ -3,6 +3,7 @@ const Question = require('mongoose').model('Question');
 const User = require('mongoose').model('User');
 const nodemailer = require('nodemailer');
 const UserLog = require('mongoose').model('UserLog');
+const DeletionArchive = require('mongoose').model('DeletionArchive');
 
 function validateArticle(req) {
 
@@ -17,40 +18,65 @@ module.exports = {
     formGet: (req, res) => {
 
 
-        if (!req.isAuthenticated()) {
+        if (!req.isAuthenticated()) {           //authorisation for current user and admins
             res.render('home/index')
         }
         else {
-            Article.find({}).sort({date: -1}).limit(4).then(articles => {
 
-                for (let index = 1; index < 4; index++) {
+            let userId = req.params.id;
 
-                    articles[index].content = articles[index].content.substring(0, 200) + "...";
+            Article.find({author: userId}).sort({date: -1}).limit(6).then(articles => {               //find by user ID
+
+
+                if (articles.length < 1) {
+
+
+                    Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id
+
+
+                        res.render('functionality/basicInfo', {
+                                articles, unanswered: answeredByMe
+                            }
+                        );
+                    });
+
+                } else {
+
+                    for (let index = 1; index < articles.length; index++) {
+
+                        articles[index].content = articles[index].content.substring(0, 200) + "...";
+                    }
+
+                    let baseArticle = articles[0].content;
+
+                    if (baseArticle.length > 1000) {
+                        baseArticle = baseArticle.substring(0, 1000) + "..."
+                    }
+                    else {
+                        baseArticle = baseArticle + " ".repeat(1000 - baseArticle.length);
+                    }
+
+                    DeletionArchive.find({deleter: userId}).then(deletions => {
+
+
+                        Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id
+
+
+                            res.render('functionality/basicInfo', {
+                                articles, unanswered: answeredByMe, deletions
+                            });
+                        });
+
+
+                    });
+
+
                 }
-
-                let baseArticle = articles[0].content;
-
-                if (baseArticle.length > 1000) {
-                    baseArticle = baseArticle.substring(0, 1000) + "..."
-                }
-                else {
-                    baseArticle = baseArticle + " ".repeat(1000 - baseArticle.length);
-                }
-
-
-                Question.find({answered: false}).then(unanswered => {
-
-
-                    res.render('functionality/basicInfo', {
-                            articles, unanswered
-                        }
-                    );
-                });
-
-
-            });
-
+                ;
+            })
         }
+
+
 // Iskam da imam i funkcionalnost da razgledam vsi4ki otgovoreni vuprosi
 // Iskam da imam vuzmojnost da vidq vsi4ki novini publikuvani ot men
 
@@ -85,14 +111,14 @@ module.exports = {
 
             let questionId = req.params.id;
 
-            console.log(req.body);
+
 
             let msg = req.body['message'];
-            console.log(msg);
+
 
             let userParams = req.user;
             let userId = userParams.id;
-            console.log(userId);
+
 
 
             Question.update({_id: questionId}, {$set: {answered: true, answeredBy: userId, answer: msg}}).then(x => {
@@ -131,7 +157,7 @@ module.exports = {
 
 
                     let myDate = new Date();
-                    let objMaterial = myDate.getDate() + "/" + (myDate.getMonth()+1) + "/" + myDate.getFullYear();
+                    let objMaterial = myDate.getDate() + "/" + (myDate.getMonth() + 1) + "/" + myDate.getFullYear();
                     UserLog.findOne({dateStamp: objMaterial}).then(answerDate => {
 
                         if (answerDate) {

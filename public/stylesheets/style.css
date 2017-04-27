@@ -60,7 +60,6 @@ p {
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 0.2px;
-    text-align: justify;
 }
 
 .btn-success:focus {
@@ -560,7 +559,7 @@ a:hover, a:active, a:focus {
 .blog-post-des .btn:hover {
   background: #A9D203;
   border-color: transparent;
-  color: yellow;
+  color: ye;
 }
 
 .blog-author {
@@ -692,17 +691,10 @@ footer{
   background: #000;
    position: relative;
     color: #ffffff;
-    padding: 10px 0px;
+    padding: 80px 0px;
 
 
 
-
-}
-footer p{
-  color: #999;
-  margin: -1%;
-}
-footer a {
 
 }
 
@@ -936,12 +928,43 @@ body > footer {
   right: 0;
 }
 
-.authors {
-  font-weight: bold;
-  font-style: oblique;
-  font-size: large;
+.crop {
+    overflow: hidden;
+    width: 40%;
+    height: 253px;
 }
 
-.articleBox {
-  min-height: 250px;
+.crop .img {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: inherit;
+    position: relative;
+}
+.article-text{
+    float:right;
+    width: 60%;
+    padding: 0 30px;
+}
+.article-text div{
+    word-wrap: break-word;
+}
+.col-md-12{
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.51);
+    padding: 0 0 10px;
+}
+.v-line{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: inherit;
+    width: 3px;
+    background: url("../images/v-line.jpg");
+    transition: 0.2s;
+}
+.crop:hover .img .v-line{
+    width: 6px;
+}
+#image{
+    border: none;
 }

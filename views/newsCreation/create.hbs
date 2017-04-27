@@ -1,4 +1,3 @@
-<div id="blog">
 <div class="container body-content span=8 offset=2">
     <div class="well">
         <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/newsCreation/create">
@@ -8,22 +7,23 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="articleTitle">Вашата новина</label>
                     <div class="col-sm-4 ">
-                        <input maxlength="100" type="text" class="form-control" id="articleTitle" placeholder="Вашата новина" name="title" required >
+                        <input type="text" class="form-control" id="articleTitle" placeholder="Вашата новина" name="title" required >
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="articleContent">Съдържание</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="articleContent" rows="5" name="content" required></textarea>
+                        <textarea class="form-control" id="articleContent" rows="5" placeholder="Съдържание" name="content" required></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="articleContent">Качете снимка</label>
                     <div class="col-sm-4">
-                        <input class="form-control" id="image" type="file" name="image" ></input>
+                        <input class="form-control" id="image" type="file" name="image" >
                     </div>
                 </div>
+
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
 
@@ -35,5 +35,4 @@
             </fieldset>
         </form>
     </div>
-</div>
 </div>

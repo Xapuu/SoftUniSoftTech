@@ -139,6 +139,3 @@ function charNewsVisual() {
     }
 
 }
-
-/* cut contents that are over 200 chars, and make them 200*/
-

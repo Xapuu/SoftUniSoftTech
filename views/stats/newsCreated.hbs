@@ -1,15 +1,15 @@
-<div class="">
+<div class="row">
 
     <div clas="row">
-        <div class="col-sm-3">
+        <div class="col-xs-12 col-sm-3">
             <h1>Basic</h1>
             <ul>
                 <li><a href="/stats/newsCreated">News</a></li>
                 <li><a href="/stats/questionsAnswers">Questions/Answers</a></li>
-                <li><a href="/stats/userActivity">UserActivity</a> </li>
+                <li><a href="/stats/userActivity">UserActivity</a></li>
             </ul>
             {{#if user.admin}}
-                <h1>Admin</h1>
+                <p2 style="font-size: large">Admin</p2>
                 <!--add Admin functionality-->
                 <ul>
                     <li><a href="/stats/logBrowser">Log</a></li>
@@ -18,23 +18,18 @@
 
         </div>
 
-        <div class="col-sm-9">
+        <div class="col-xs-12 col-sm-9">
 
 
             <canvas id="myNewsChart"></canvas>
 
         </div>
-        <div id="data3" class="data3" style="display: none" >{{output}}</div>
+        <div id="data3" class="data3" style="display: none">{{output}}</div>
 
     </div>
 
-    <div class="row"></div>
 
 </div>
-
 <script>
-    $( document ).ready(charNewsVisual());
-
-
-
+    $(document).ready(charNewsVisual());
 </script>

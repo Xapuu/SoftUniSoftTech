@@ -9,7 +9,7 @@ const ObjectId = mongoose.Schema.Types.ObjectId;
      content:{type:String, required:true},
      author:{type: ObjectId, required:true, ref:'User'},
      date:{type:Date, default: Date.now()},
-     imagesFromNewsPath:{type: String, default:'/images/about-bg.jpg'},
+     imagesFromNewsPath:{type: String, default:'/imagesFromNews/newdsLogo.jpg'},
  });
 
  const Article = mongoose.model('Article', articleSchema);

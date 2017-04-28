@@ -1,54 +1,7 @@
-<div class="container body-content">
+<div class="container">
 <div class="row">
-
-    {{#if mainArticle}}
-
-        <div id="kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID" class="col-md-12">
-            <article>
-                <div class="article-text">
-                    <h2>{{mainArticle.title}}</h2>
-                    <div>{{mainArticle.content}}
-                    </div>
-                    <br>
-
-                    <!--<small class="author">-->
-                    <!--{{this.author.fullName}}-->
-                    <!--</small>-->
-                </div>
-               <!-- <p id="mainArticleContent">{{mainArticle.content}}</p>
-                <br>
-
-                <img src="{{mainArticle.imagesFromNewsPath}}"/>-->
-                <!--<small class="author">-->
-                    <!--{{mainArticle.author.fullName}}-->
-
-                <!--</small>-->
-                <div class="crop">
-                    <div class="img" style="background: url('{{mainArticle.imagesFromNewsPath}}')">
-
-                </div>
-
-                <div>
-                    <div class="pull-right">
-
-                        <a class="btn btn-primary" href="/newsCreation/details/{{mainArticle.id}}">Вижте
-                            повече &raquo;</a>
-
-                    </div>
-                </div>
-            </article>
-        </div>
-    </div>
-
-
-
-    {{/if}}
-
-
-    <div class="row">
-
-
-        {{#each articles}}
+    {{#each articles}}
+        <a href="/newsCreation/details/{{this.id}}">
             <div id="kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID" class="col-md-12">
                 <article>
                     <div class="article-text">
@@ -58,34 +11,29 @@
                         <br>
 
                         <!--<small class="author">-->
-                            <!--{{this.author.fullName}}-->
+                        <!--{{this.author.fullName}}-->
                         <!--</small>-->
                     </div>
                     <div class="crop">
-                    <div class="img" style="background: url('{{imagesFromNewsPath}}')">
-                        
+                        <div class="img" style="background: url('{{imagesFromNewsPath}}')"></div>
                     </div>
-                    <div>
-                        <div class="pull-right">
 
-                            <a class="btn btn-primary" href="/newsCreation/details/{{this.id}}">Вижте
-                                повече &raquo;</a>
-                        </div>
-                    </div>
                 </article>
             </div>
-        {{/each}}
+        </a>
+    {{/each}}
+</div>
 
 
-
-    </div>
-    <br>
-
+<br>
+<div class="row">
     <div id="moreNews">
         {{#if articles}}
-        <div class="blog-post-des">
-            <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser/1">Вижте повече</a></p>
+            <div class="blog-post-des">
+                <p><a class="btn btn-default btn-xs center-block" href="/news/multyNewsBrowser/1">Вижте повече</a></p>
             </div>
         {{/if}}
     </div>
+</div>
+</div>
 </div>

@@ -27,8 +27,8 @@ module.exports = {
 
             Article.find({author: currentUserId}).sort({date: -1}).populate('author').limit(6).then(articlesWritten => {               //find currentUser Articles and populate with author
                 for (let i = 0; i < articlesWritten.length; i++) {
-                    articlesWritten[i].content = articlesWritten[i].content.substring(1, 200);
-                    articlesWritten[i].title = articlesWritten[i].title.substring(1, 30);
+                    articlesWritten[i].content = articlesWritten[i].content.substring(0, 200);
+                    articlesWritten[i].title = articlesWritten[i].title.substring(0, 30);
                     articlesWritten[i].currentUser = articlesWritten[i].author.fullName;
                 }
 
@@ -37,15 +37,15 @@ module.exports = {
                     answeredBy: currentUserId
                 }).sort({dateAsked: -1}).populate('answeredBy').limit(6).then(answeredQuestions => {  //find currentUser Replies of questions and populate with author
                     for (let i = 0; i < answeredQuestions.length; i++) {
-                        answeredQuestions[i].content = answeredQuestions[i].content.substring(1, 200);
-                        answeredQuestions[i].answer = answeredQuestions[i].answer.substring(1, 200);
+                        answeredQuestions[i].content = answeredQuestions[i].content.substring(0, 200);
+                        answeredQuestions[i].answer = answeredQuestions[i].answer.substring(0, 200);
                         answeredQuestions[i].currentUser = answeredQuestions[i].answeredBy.fullName;
 
                     }
 
                     DeletionArchive.find({author: currentUserId}).sort({dateOfDeletion: -1}).populate('author').populate('deleter').limit(6).then(deletedArticlesOfCurrentUser => { //All articles questions of the current user from his prespective
                         for (let i = 0; i < deletedArticlesOfCurrentUser.length; i++) {
-                            deletedArticlesOfCurrentUser[i].content = deletedArticlesOfCurrentUser[i].content.substring(1, 200);
+                            deletedArticlesOfCurrentUser[i].content = deletedArticlesOfCurrentUser[i].content.substring(0, 200);
                             deletedArticlesOfCurrentUser[i].currrentUser = deletedArticlesOfCurrentUser[i].author.fullName;
 
                         }
@@ -54,7 +54,7 @@ module.exports = {
                             for (let i = 0; i < deletedArticlesOfCurrentAdminUser.length; i++) {
 
 
-                                deletedArticlesOfCurrentAdminUser[i].content = deletedArticlesOfCurrentAdminUser[i].content.substring(1, 200);
+                                deletedArticlesOfCurrentAdminUser[i].content = deletedArticlesOfCurrentAdminUser[i].content.substring(0, 200);
                                 deletedArticlesOfCurrentAdminUser[i].currentUser = deletedArticlesOfCurrentAdminUser[i].deleter.fullName;
 
                             }

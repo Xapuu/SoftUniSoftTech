@@ -29,23 +29,26 @@
     <div class="row">
 
         {{#if user.admin}}
-            <h2>Изтрити статии</h2>
+            {{#if deletedArticlesOfCurrentAdminUser}}
+                <h2>Изтрити статии</h2>
+            {{/if}}
+            {{#each deletedArticlesOfCurrentAdminUser}}
+                <div class="col-md-6 articleBox" style="height: 250px">
+                    <article>
+                        <header>
+                            <h2>{{this.title}}</h2>
+                            <p class="authors">Created by:{{this.author.fullName}}</p>
+                            <p class="authors">Deleted by:{{this.currentUser}}</p>
+                        </header>
+                        <p class="contentForCut">{{this.content}}</p>
 
-        {{#each deletedArticlesOfCurrentAdminUser}}
-            <div class="col-md-6 articleBox" style="height: 250px">
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                        <p class="authors">Created by:{{this.author.fullName}}</p>
-                        <p class="authors">Deleted by:{{this.currentUser}}</p>
-                    </header>
-                    <p class="contentForCut">{{this.content}}</p>
-
-                </article>
-            </div>
-        {{/each}}
-            {{else}}
-            <h2>Изтрити статии</h2>
+                    </article>
+                </div>
+            {{/each}}
+        {{else}}
+            {{#if deletedArticlesOfCurrentUser}}
+                <h2>Изтрити статии</h2>
+            {{/if}}
             {{#each deletedArticlesOfCurrentUser}}
                 <div class="col-md-6 articleBox" style="height: 250px">
                     <article>
@@ -70,25 +73,25 @@
         {{#if answeredQuestions}}
             <h2>Отговорени въпроси</h2>
 
-        {{#each answeredQuestions}}
-            <div class="col-md-6" style="height: 400px">
-                <article>
-                    <header>
-                        <h3>Зададен от: {{this.author}} mail: {{this.authorMail}}</h3>
-                        <h4>Тема: {{this.subject}}</h4>
-                    </header>
-                    <h5>Въпрос</h5>
-                    <p>{{this.content}}</p>
-                    <h3>Отговорен от: {{this.currentUser}}</h3>
-                    <h4>Отговор</h4>
-                    <p>{{this.answer}}</p>
+            {{#each answeredQuestions}}
+                <div class="col-md-6" style="height: 400px">
+                    <article>
+                        <header>
+                            <h3>Зададен от: {{this.author}} mail: {{this.authorMail}}</h3>
+                            <h4>Тема: {{this.subject}}</h4>
+                        </header>
+                        <h5>Въпрос</h5>
+                        <p>{{this.content}}</p>
+                        <h3>Отговорен от: {{this.currentUser}}</h3>
+                        <h4>Отговор</h4>
+                        <p>{{this.answer}}</p>
 
-                </article>
+                    </article>
 
 
-            </div>
+                </div>
 
-        {{/each}}
+            {{/each}}
         {{/if}}
     </div>
 </div>

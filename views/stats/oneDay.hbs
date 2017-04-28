@@ -1,0 +1,11 @@
+<div class="container">
+
+    <h1>Потреители</h1>
+    {{#each myObj}}
+
+
+        <div class="blog-post-des col-md-4">
+            <p><a class="btn btn-default btn-xs center-block" href="/user/details/{{this.id}}">{{this.name}}</a></p>
+        </div>
+    {{/each}}
+</div>

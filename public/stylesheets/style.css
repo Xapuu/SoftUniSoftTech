@@ -689,9 +689,7 @@ footer p {
     margin: -1%;
 }
 
-footer a {
 
-}
 
 footer .col-md-4 .fa {
     color: #ffffff;
@@ -935,16 +933,17 @@ body > footer {
     height: 253px;
 }
 
-.article-text{
-     float:right;
-     width: 60%;
-     padding: 0 30px;
- }
-.article-text div{
-     word-wrap: break-word;
- }
+.article-text {
+    float: right;
+    width: 60%;
+    padding: 0 30px;
+}
 
-.v-line{
+.article-text div {
+    word-wrap: break-word;
+}
+
+.v-line {
     position: absolute;
     left: 0;
     top: 0;
@@ -953,36 +952,53 @@ body > footer {
     background: url("../images/v-line.jpg");
     transition: 0.2s;
 }
-.crop:hover .img .v-line{
+
+.crop:hover .img .v-line {
     width: 6px;
 }
-#image{
-    border: none;
- }
 
-.crop .img {
-     		    background-repeat: no-repeat !important;
-      		    background-position: center !important;
-   height: inherit;
-   position: relative;
+#image {
+    border: none;
 }
 
+.crop .img {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    height: inherit;
+    position: relative;
+}
 
-#kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID{
+#kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID {
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.51);
     padding: 0 0 10px;
 }
-#fullNewsParagraf{
-   padding-right: 1.5%;
- }
 
-.statsCss{
+#fullNewsParagraf {
+    padding-right: 1.5%;
+}
+
+.statsCss {
     position: relative;
 }
-#myFooter.footerCss {
-    position: relative;
-    background-color: black !important;
-    color: #000 !important;
-    outline:black !important;
+
+
+
+.article-text {
+    color: black;
 }
+
+.userStats {
+    background-color: limegreen;
+    font-weight: 900;
+    padding: 25px;
+    margin: 15px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.navNav{
+    margin-left: -20px;
+}
+

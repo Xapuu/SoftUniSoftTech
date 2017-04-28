@@ -1,7 +1,7 @@
 <div class="container-fluid statsCss">
 
     <div class="row">
-        <div class="col-xs-12 col-sm-3">
+        <div class="col-xs-12 col-sm-2">
             <h2>Статистики</h2>
             <ul>
                 <li><a href="/stats/newsCreated">Новини</a></li>
@@ -17,18 +17,17 @@
             {{/if}}
 
         </div>
-        <div class="col-xs-12 col-sm-9">
+        <div class="col-xs-12 col-sm-10">
             {{#each displayObj}}
 
                 <a href="/stats/byDate/{{this.id}}">
-                    <div class="col-sm-3">
+                    <div class="col-sm-2 well userStats">
                         <p>{{this.dateStamp}}</p>
                         <p>created articles {{this.createAt}}</p>
                         <p>deleted articles {{this.deleteAt}}</p>
                         <p>asked questions {{this.asked}}</p>
                         <p>answered {{this.answer}}</p>
                         <p>unique logs {{this.log}}</p>
-
                     </div>
                 </a>
 

@@ -1,88 +1,59 @@
 <div class="container body-content">
-<div class="row ">
+    <div class="row ">
 
-    {{#if mainArticle}}
 
-        <div class="col-md-12">
-            <form action="#">
+        {{#each kurec}}
 
-                <article>
-                    <header>
-                        <h2>{{mainArticle.title}}</h2>
-                    </header>
+            <div class="col-md-12">
 
-                    <p id="mainArticleContent">{{mainArticle.content}}</p>
-                    <br>
+                <form action="#">
 
-                    <small class="author">
-                        {{mainArticle.author.fullName}}
+                    <article>
+                        <header>
+                            <h2>{{this.title}}</h2>
+                        </header>
 
-                    </small>
-
-                    <div>
-                        <div class="pull-right">
-
-                            <a class="btn btn-primary"   href="/newsCreation/details/{{mainArticle.id}}">Вижте
-                                повече &raquo;.</a>
+                        <div>{{this.content}}
                         </div>
-                    </div>
-                </article>
-            </form>
-        </div>
-    </div>
+                        <br>
 
+                        <small class="author">
+                            {{this.author.fullName}}
+                        </small>
 
+                        <div>
+                            <div class="pull-right">
 
-    {{/if}}
-
-
-    {{#each kurec}}
-
-        <div class="col-md-12">
-
-            <form action="#">
-
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                    </header>
-
-                    <div>{{this.content}}
-                    </div>
-                    <br>
-
-                    <small class="author">
-                        {{this.author.fullName}}
-                    </small>
-
-                    <div>
-                        <div class="pull-right">
-
-                            <a class="btn btn-primary" href="/newsCreation/details/{{this.id}}">Вижте повече &raquo;</a>
+                                <a class="btn btn-primary" href="/newsCreation/details/{{this.id}}">Вижте
+                                    повече &raquo;</a>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            </form>
-        </div>
+                    </article>
+                </form>
+            </div>
 
 
-    {{/each}}
+        {{/each}}
+        <div class="row ">
 
+            <div class="col-md-12">
+                <div class="row text-center">
+                    <a href="/news/multyNewsBrowser/{{pages.firstPage}}" class="btn btn-primary">First Page</a>
+                    <a href="/news/multyNewsBrowser/{{pages.prevPage}}" class="btn btn-primary">Prev Page</a>
+                    <a href="/news/multyNewsBrowser/{{pages.nextPage}}" class="btn btn-primary">Next Page</a>
+                    <a href="/news/multyNewsBrowser/{{pages.lastPage}}" class="btn btn-primary">Last Page</a>
+                </div>
 
-    <div class="col-md-12">
-        <div class="row text-center">
-            <a href="/news/multyNewsBrowser/{{pages.firstPage}}" class="btn btn-primary">First Page</a>
-            <a href="/news/multyNewsBrowser/{{pages.prevPage}}" class="btn btn-primary">Prev Page</a>
-            <a href="/news/multyNewsBrowser/{{pages.nextPage}}" class="btn btn-primary">Next Page</a>
-            <a href="/news/multyNewsBrowser/{{pages.lastPage}}" class="btn btn-primary">Last Page</a>
-        </div>
-
-        <div class="row text-center">
-            <br>
-            <button class=" btn btn-primary" type="submit">Go To</button></a>
-            <form method="POST" action="/news/multyNewsBrowser">
-                <textarea style="margin: 1%" id="goToPage" rows="1"  cols="1" name="searchedPage" id="searchedPage" placeholder="{{pages.currentPage}}"></textarea>
-            </form>
+                <div class="row text-center">
+                    <br>
+                    <button class=" btn btn-primary" type="submit">Go To</button>
+                    </a>
+                    <form method="POST" action="/news/multyNewsBrowser">
+                        <textarea style="margin: 1%" id="goToPage" rows="1" cols="1" name="searchedPage"
+                                  id="searchedPage" placeholder="{{pages.currentPage}}"></textarea>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>

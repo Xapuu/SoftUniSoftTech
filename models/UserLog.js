@@ -8,7 +8,7 @@ let userLogSchema = mongoose.Schema({
    dateStamp: {type:String, default:""},
     createAt:{type:[ObjectId], default:[]},
     deleteAt:{type:[ObjectId], default:[]},
-    log:{type:[ObjectId], default:[]},
+    log:{type:[ObjectId], default:[], ref:'User'},
     asked:{type:Number, default:0 },
     answer:{type:[ObjectId], default:[]},
     sortParam:{type:Date,default:Date.now()}

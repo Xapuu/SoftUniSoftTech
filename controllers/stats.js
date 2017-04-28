@@ -3,7 +3,7 @@
  */
 
 const UserLog = require('mongoose').model('UserLog');
-
+const User = require('mongoose').model('User');
 module.exports = {
     basicView: (req, res) => {
 
@@ -83,14 +83,14 @@ module.exports = {
 
     logBrowserView: (req, res) => {
 
-        UserLog.find({}).sort({date: -1}).limit(30).then(log => {
+        UserLog.find({}).sort({sortParam: 1}).limit(32).then(log => {
 
             let displayObj = [];
 
             log.map(logForDisplay => {
 
                 let myObj = {
-                    dateStamp:logForDisplay.dateStamp,
+                    dateStamp: logForDisplay.dateStamp,
                     createAt: logForDisplay.createAt.length,
                     deleteAt: logForDisplay.deleteAt.length,
                     log: logForDisplay.log.length,
@@ -105,15 +105,24 @@ module.exports = {
 
 
     },
-    byDate:(req,res)=>{
+    byDate: (req, res) => {
 
+        let myObj =[];
         let id = req.params.id;
         console.log(id);
-        UserLog.findOne({_id:id}).then(x=>{
-            console.log(x)
+        UserLog.findOne({_id:id}).then(currentDay=>{
+            for(let i=0; i<currentDay.log.length;i++){
+                User.findOne({_id:currentDay.log[i]}).then(user=>{
+                    let tempObj={
+                        id:user._id,
+                        name:user.fullName
+                    };
+                    myObj.push(tempObj)
+                })
+            }
         });
 
-        res.redirect('/');
+        res.render('stats/oneDay',{myObj});
     }
 
 

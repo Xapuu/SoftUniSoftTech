@@ -1,38 +1,33 @@
-<div class="row">
-
-    <div clas="row">
+<div class="container-fluid statsCss"">
+    <div class="row">
         <div class="col-xs-12 col-sm-3">
-            <h1>Basic</h1>
+            <h2>Статистики</h2>
             <ul>
-                <li><a href="/stats/newsCreated">News</a></li>
-                <li><a href="/stats/questionsAnswers">Questions/Answers</a></li>
-                <li><a href="/stats/userActivity">UserActivity</a> </li>
+                <li><a href="/stats/newsCreated">Новини</a></li>
+                <li><a href="/stats/questionsAnswers">Въпроси/Отговори</a></li>
+                <li><a href="/stats/userActivity">Потребителска активност</a></li>
             </ul>
             {{#if user.admin}}
-                <p2 style="font-size: large">Admin</p2>
+                <h2>Admin</h2>
                 <!--add Admin functionality-->
                 <ul>
-                    <li><a href="/stats/logBrowser">Log</a></li>
+                    <li><a href="/stats/logBrowser">Лог</a></li>
                 </ul>
             {{/if}}
 
-
         </div>
-
         <div class="col-xs-12 col-sm-9">
 
 
             <canvas id="myActivityChart"></canvas>
 
         </div>
-        <div id="data2" class="data2" style="display: none" >{{output}}</div>
+        <div id="data2" class="data2" style="display: none">{{output}}</div>
 
     </div>
 
     <script>
-       charActivityVisual();
-
+        charActivityVisual();
     </script>
-
 
 </div>

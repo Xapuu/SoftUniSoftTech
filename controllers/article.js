@@ -243,7 +243,8 @@ module.exports = {
                             content:article.content,
                             author: authorId,
                             deleter: user._id,
-                            dateOfCreation:article.date
+                            dateOfCreation:article.date,
+                            dateOfDeletion:Date.now()
                         };
 
                         DeletionArchive.create(deleter).then(x=>{

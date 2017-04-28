@@ -1,37 +1,39 @@
+<div class="container-fluid statsCss">
 
-<div class="container">
-    <div class="col-xs-12 col-sm-3">
-        <h1>Basic</h1>
-        <ul>
-            <li><a href="/stats/newsCreated">News</a></li>
-            <li><a href="/stats/questionsAnswers">Questions/Answers</a></li>
-            <li><a href="/stats/userActivity">UserActivity</a></li>
-        </ul>
-        {{#if user.admin}}
-            <h1>Admin</h1>
-            <!--add Admin functionality-->
+    <div class="row">
+        <div class="col-xs-12 col-sm-3">
+            <h2>Статистики</h2>
             <ul>
-                <li><a href="/stats/logBrowser">Log</a></li>
+                <li><a href="/stats/newsCreated">Новини</a></li>
+                <li><a href="/stats/questionsAnswers">Въпроси/Отговори</a></li>
+                <li><a href="/stats/userActivity">Потребителска активност</a></li>
             </ul>
-        {{/if}}
+            {{#if user.admin}}
+                <h2>Admin</h2>
+                <!--add Admin functionality-->
+                <ul>
+                    <li><a href="/stats/logBrowser">Лог</a></li>
+                </ul>
+            {{/if}}
+
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            {{#each displayObj}}
+
+                <a href="/stats/byDate/{{this.id}}">
+                    <div class="col-sm-3">
+                        <p>{{this.dateStamp}}</p>
+                        <p>created articles {{this.createAt}}</p>
+                        <p>deleted articles {{this.deleteAt}}</p>
+                        <p>asked questions {{this.asked}}</p>
+                        <p>answered {{this.answer}}</p>
+                        <p>unique logs {{this.log}}</p>
+
+                    </div>
+                </a>
+
+            {{/each}}
+        </div>
 
     </div>
-    <div class="col-xs-12 col-sm-9">
-        {{#each displayObj}}
-
-                 <a href="/stats/byDate/{{this.id}}">
-                     <div class="col-sm-3">
-                    <p>{{this.dateStamp}}</p>
-                    <p>created articles {{this.createAt}}</p>
-                    <p>deleted articles {{this.deleteAt}}</p>
-                    <p>asked questions {{this.asked}}</p>
-                    <p>answered {{this.answer}}</p>
-                    <p>unique logs {{this.log}}</p>
-
-                </div>
-            </a>
-
-        {{/each}}
-    </div>
-
 </div>

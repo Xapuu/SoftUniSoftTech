@@ -1,65 +1,76 @@
 <div class="container body-content">
     <div class="row">
-        {{#if articles}}
+        {{#if articlesWritten}}
             <h2>Статии</h2>
+            {{#each articlesWritten}}
+                <div class="col-md-6" style="min-height: 250px">
+                    <article>
+                        <header>
+                            <h2>{{this.title}}</h2>
+                        </header>
+                        <p>
+                            {{this.content}}
+                        </p>
+                        <small class="author">
+                            {{this.currentUser}}
+                        </small>
+                        <div class="pull-right">
+                            <a class="button"
+                               href="/newsCreation/details/{{this.id}}">Прочети повече &raquo;</a>
+                        </div>
+                    </article>
+                </div>
+            {{/each}}
         {{/if}}
-        {{#each articles}}
-            <div class="col-md-6" style="height: 250px">
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                    </header>
-
-                    <p>{{this.content}}
-                    </p>
-
-                    <small class="author">
-                        {{this.author.fullName}}
-                    </small>
-
-
-                    <div class="pull-right">
-                        <a class="button"
-                           href="/newsCreation/details/{{this.id}}">Прочети повече &raquo;</a>
-                    </div>
-
-                </article>
-            </div>
-        {{/each}}
     </div>
 </div>
 
 <div class="container body-content">
     <div class="row">
 
-        {{#if deletions}}
+        {{#if user.admin}}
             <h2>Изтрити статии</h2>
-        {{/if}}
 
-        {{#each deletions}}
+        {{#each deletedArticlesOfCurrentAdminUser}}
             <div class="col-md-6 articleBox" style="height: 250px">
                 <article>
                     <header>
                         <h2>{{this.title}}</h2>
-                        <p class="authors">Created by:{{this.creator}}</p>
-                        <p class="authors">Deleted by:{{this.deletor}}</p>
+                        <p class="authors">Created by:{{this.author.fullName}}</p>
+                        <p class="authors">Deleted by:{{this.currentUser}}</p>
                     </header>
                     <p class="contentForCut">{{this.content}}</p>
 
                 </article>
             </div>
         {{/each}}
+            {{else}}
+            <h2>Изтрити статии</h2>
+            {{#each deletedArticlesOfCurrentUser}}
+                <div class="col-md-6 articleBox" style="height: 250px">
+                    <article>
+                        <header>
+                            <h2>{{this.title}}</h2>
+                            <p class="authors">Created by:{{this.author.fullName}}</p>
+                            <p class="authors">Deleted by:{{this.deleter.fullName}}</p>
+                        </header>
+                        <p class="contentForCut">{{this.content}}</p>
 
+                    </article>
+                </div>
+            {{/each}}
+
+        {{/if}}
 
     </div>
 </div>
 
 <div class="container body-content">
     <div class="row">
-        {{#if unanswered}}
+        {{#if answeredQuestions}}
             <h2>Отговорени въпроси</h2>
-        {{/if}}
-        {{#each unanswered}}
+
+        {{#each answeredQuestions}}
             <div class="col-md-6" style="height: 400px">
                 <article>
                     <header>
@@ -68,7 +79,7 @@
                     </header>
                     <h5>Въпрос</h5>
                     <p>{{this.content}}</p>
-                    <h3>Отговорен от: {{this.name}}</h3>
+                    <h3>Отговорен от: {{this.currentUser}}</h3>
                     <h4>Отговор</h4>
                     <p>{{this.answer}}</p>
 
@@ -78,5 +89,6 @@
             </div>
 
         {{/each}}
+        {{/if}}
     </div>
 </div>

@@ -23,65 +23,55 @@ module.exports = {
         }
         else {
 
-            let userId = req.params.id;
+            let currentUserId = req.params.id;                                                                                  //find currentUserId
 
-            Article.find({author: userId}).sort({date: -1}).limit(6).then(articles => {               //find by user ID
+            Article.find({author: currentUserId}).sort({date: -1}).populate('author').limit(6).then(articlesWritten => {               //find currentUser Articles and populate with author
+                for (let i = 0; i < articlesWritten.length; i++) {
+                    articlesWritten[i].content = articlesWritten[i].content.substring(1, 200);
+                    articlesWritten[i].title = articlesWritten[i].title.substring(1, 30);
+                    articlesWritten[i].currentUser = articlesWritten[i].author.fullName;
+                }
 
+                Question.find({
+                    answered: true,
+                    answeredBy: currentUserId
+                }).sort({dateAsked: -1}).populate('answeredBy').limit(6).then(answeredQuestions => {  //find currentUser Replies of questions and populate with author
+                    for (let i = 0; i < answeredQuestions.length; i++) {
+                        answeredQuestions[i].content = answeredQuestions[i].content.substring(1, 200);
+                        answeredQuestions[i].answer = answeredQuestions[i].answer.substring(1, 200);
+                        answeredQuestions[i].currentUser = answeredQuestions[i].answeredBy.fullName;
 
-                if (articles.length < 1) {
-
-
-                    Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id
-
-
-                        res.render('functionality/basicInfo', {
-                                articles, unanswered: answeredByMe
-                            }
-                        );
-                    });
-
-                } else {
-
-                    for (let index = 0; index < articles.length; index++) {
-
-                        articles[index].title = articles[index].title.substring(1,30);
-                        articles[index].content = articles[index].content.substring(0, 200) + "...";
                     }
 
+                    DeletionArchive.find({author: currentUserId}).sort({dateOfDeletion: -1}).populate('author').populate('deleter').limit(6).then(deletedArticlesOfCurrentUser => { //All articles questions of the current user from his prespective
+                        for (let i = 0; i < deletedArticlesOfCurrentUser.length; i++) {
+                            deletedArticlesOfCurrentUser[i].content = deletedArticlesOfCurrentUser[i].content.substring(1, 200);
+                            deletedArticlesOfCurrentUser[i].currrentUser = deletedArticlesOfCurrentUser[i].author.fullName;
 
-
-
-                    DeletionArchive.find({deleter: userId}).sort({dateOfDeletion:-1}).limit(6).then(deletions => {
-
-                        for(let i=0; i<deletions.length; i++){
-                            deletions[i].content=deletions[i].content.substring(1,200);
                         }
+                        DeletionArchive.find({deleter: currentUserId}).sort({dateOfDeletion: -1}).populate('deleter').populate('author').limit(6).then(deletedArticlesOfCurrentAdminUser => { //All deleted articles from admin prespective
 
-                        Question.find({answeredBy: userId}).limit(6).then(answeredByMe => {              // find by user id
+                            for (let i = 0; i < deletedArticlesOfCurrentAdminUser.length; i++) {
 
-                            for(let i=0; i<answeredByMe.length; i++){
-                                answeredByMe[i].answer=answeredByMe[i].answer.substring(1,200);
-                                answeredByMe[i].content=answeredByMe[i].content.substring(1,200);
+
+                                deletedArticlesOfCurrentAdminUser[i].content = deletedArticlesOfCurrentAdminUser[i].content.substring(1, 200);
+                                deletedArticlesOfCurrentAdminUser[i].currentUser = deletedArticlesOfCurrentAdminUser[i].deleter.fullName;
+
                             }
 
-
                             res.render('functionality/basicInfo', {
-                                articles, unanswered: answeredByMe, deletions
+                                articlesWritten,
+                                answeredQuestions,
+                                deletedArticlesOfCurrentUser,
+                                deletedArticlesOfCurrentAdminUser
                             });
-                        });
+                        })
+                    })
 
+                })
 
-                    });
-
-
-                }
-                ;
             })
         }
-
-
-// Iskam da imam i funkcionalnost da razgledam vsi4ki otgovoreni vuprosi
-// Iskam da imam vuzmojnost da vidq vsi4ki novini publikuvani ot men
 
     },
 
@@ -93,7 +83,6 @@ module.exports = {
 
             let questionId = req.params.id;
             Question.findOne({_id: questionId}).then(question => {
-
 
                 res.render('functionality/answerForm', {
                     kur: question.content
@@ -115,20 +104,15 @@ module.exports = {
             let questionId = req.params.id;
 
 
-
             let msg = req.body['message'];
-
 
             let userParams = req.user;
             let userId = userParams.id;
 
 
-
             Question.update({_id: questionId}, {$set: {answered: true, answeredBy: userId, answer: msg}}).then(x => {
 
-
                 Question.findOne({_id: questionId}).then(question => {
-
 
                     let mailRecepient = question.authorMail;
                     let subject = question.subject;
@@ -195,7 +179,6 @@ module.exports = {
     },
 
     questionView: (req, res) => {
-
 
         if (validateArticle(req)) {
             res.redirect('/');

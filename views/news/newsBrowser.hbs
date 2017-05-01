@@ -2,7 +2,7 @@
 <div class="row">
     {{#each articles}}
         <a href="/newsCreation/details/{{this.id}}">
-            <div id="kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID" class="col-md-12">
+            <div id="" class="col-md-12 kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID">
                 <article>
                     <div class="article-text">
                         <h2>{{this.title}}</h2>
@@ -15,7 +15,8 @@
                         <!--</small>-->
                     </div>
                     <div class="crop">
-                        <div class="img" style="background: url('{{imagesFromNewsPath}}')"></div>
+                        <div class="img" style="background: url('{{imagesFromNewsPath}}')">
+                        <div class="v-line"></div></div>
                     </div>
 
                 </article>

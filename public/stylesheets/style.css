@@ -948,12 +948,12 @@ body > footer {
     left: 0;
     top: 0;
     height: inherit;
-    width: 3px;
+    width: 2px;
     background: url("../images/v-line.jpg");
     transition: 0.2s;
 }
 
-.crop:hover .img .v-line {
+.kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID:hover .crop .img .v-line {
     width: 6px;
 }
 
@@ -968,7 +968,7 @@ body > footer {
     position: relative;
 }
 
-#kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID {
+.kogato_Pravite_PromeniPoCSS-aSi_Pravete_NovClas_IliID {
     margin-bottom: 20px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.51);
     padding: 0 0 10px;
@@ -1002,3 +1002,7 @@ body > footer {
     margin-left: -20px;
 }
 
+/* article content margin at newsCreati*/
+#articleContent{
+    margin: 25px
+}
